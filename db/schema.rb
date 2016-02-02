@@ -11,29 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121031601) do
+ActiveRecord::Schema.define(version: 20160202213252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bunkers", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "price"
+    t.string   "image",       default: "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
+    t.datetime "created_at",                                                                                       null: false
+    t.datetime "updated_at",                                                                                       null: false
+    t.integer  "category_id"
+    t.string   "status"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
+  end
+
+  add_index "bunkers", ["category_id"], name: "index_bunkers_on_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "price"
-    t.string   "image",       default: "http://www.vbdl.org/wp-content/uploads/2015/09/cartoon-zombies-373177.jpg"
-    t.datetime "created_at",                                                                                        null: false
-    t.datetime "updated_at",                                                                                        null: false
-    t.integer  "category_id"
-    t.string   "status"
-  end
-
-  add_index "items", ["category_id"], name: "index_items_on_category_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -89,9 +91,9 @@ ActiveRecord::Schema.define(version: 20160121031601) do
     t.integer  "safe_house",      default: 0
   end
 
-  add_foreign_key "items", "categories"
-  add_foreign_key "order_items", "items"
+  add_foreign_key "bunkers", "categories"
+  add_foreign_key "order_items", "bunkers", column: "item_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "photos", "items"
+  add_foreign_key "photos", "bunkers", column: "item_id"
 end

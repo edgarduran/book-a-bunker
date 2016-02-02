@@ -1,10 +1,10 @@
 FactoryGirl.define do
-  factory :item do
+  factory :bunker do
     title
     description
     price 10
     status nil
-    image "https://www.wpclipart.com/weapons/axe/Axe_red.svg"
+    image "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
   end
 
   sequence :title do |n|
@@ -47,15 +47,15 @@ FactoryGirl.define do
     "email#{n}@zombiez.com"
   end
 
-  factory :category do
-    title
-
-    factory :category_with_items do
-      items { create_list(:item, 2) }
-    end
-  end
-
-  factory :order do
-    items { create_list(:item, 2) }
-  end
+  # factory :category do
+  #   title
+  #
+  #   factory :category_with_items do
+  #     items { create_list(:item, 2) }
+  #   end
+  # end
+  #
+  # factory :order do
+  #   items { create_list(:item, 2) }
+  # end
 end

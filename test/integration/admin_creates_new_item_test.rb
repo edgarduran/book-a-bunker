@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
   test "newly created item created item can be seen on item index page" do
+    skip
     Category.create(title: "Books")
     admin = create_admin
     login(admin)
@@ -24,6 +25,7 @@ class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can upload image with new item" do
+    skip
     Category.create(title: "Books")
     admin = create_admin
     login(admin)

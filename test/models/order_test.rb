@@ -2,12 +2,14 @@ require "test_helper"
 
 class OrderTest < ActiveSupport::TestCase
   test "formatted date formats the date" do
+    skip
     order = Order.create
     time = Time.zone.now
     assert_equal time.strftime("%B %e, %Y"), order.formatted_date
   end
 
   test "item quantities method returns a quantity hash" do
+    skip
     order = Order.create
     order.items.create(title: "Hammer", description: "Hits", price: 2)
     ord_item = order.order_items.first
@@ -22,6 +24,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "item subtotal method returns subtotal of each different item" do
+    skip
     order = Order.create
     order.items.create(title: "Hammer", price: 10, description: "Hits")
     ord_item = order.order_items.first
@@ -36,6 +39,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "returns sum of all subtotals" do
+    skip
     order = Order.create
     order.items.create(
       title: "Hammer",
@@ -54,6 +58,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "resets status of order" do
+    skip
     order = Order.create
 
     assert_equal "ordered", order.status
