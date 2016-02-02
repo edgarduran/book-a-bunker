@@ -2,6 +2,7 @@ require "test_helper"
 
 class AuthenticatedUserTest < ActionDispatch::IntegrationTest
   test "user can create account and then see logout button and logout" do
+    skip
     item = create(:item)
     visit items_path
     click_link "Add to Duffel"

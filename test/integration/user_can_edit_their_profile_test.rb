@@ -2,6 +2,7 @@ require "test_helper"
 
 class UserCanEditTheirProfileTest < ActionDispatch::IntegrationTest
   test "they see updated information" do
+    skip
     user = create(:user)
     login(user)
 

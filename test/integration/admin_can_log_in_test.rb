@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdminCanLogInTest < ActionDispatch::IntegrationTest
   test "admin logs in and sees admin dashboard" do
+    skip
     admin = create_admin
     login(admin)
 

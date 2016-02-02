@@ -2,6 +2,7 @@ require "test_helper"
 
 class UserCanViewAllItemsTest < ActionDispatch::IntegrationTest
   test "displays all items" do
+    skip
     item_1, item_2 = create_list(:item, 2)
 
     visit "/items"

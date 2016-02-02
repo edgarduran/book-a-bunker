@@ -2,6 +2,7 @@ require "test_helper"
 
 class UserSeesErrorWithIncorrectFieldTest < ActionDispatch::IntegrationTest
   test "user does not provide email" do
+    skip
     visit new_user_path
 
     fill_in "First name", with: "Penney"
@@ -19,6 +20,7 @@ class UserSeesErrorWithIncorrectFieldTest < ActionDispatch::IntegrationTest
   end
 
   test "password must be correct" do
+    skip
     user = create(:user)
 
     visit login_path
