@@ -4,7 +4,7 @@ FactoryGirl.define do
     description
     price 10
     status nil
-    image "https://www.wpclipart.com/weapons/axe/Axe_red.svg"
+    image "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
   end
 
   sequence :title do |n|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202033555) do
+ActiveRecord::Schema.define(version: 20160202213252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,13 @@ ActiveRecord::Schema.define(version: 20160202033555) do
     t.string   "title"
     t.text     "description"
     t.integer  "price"
-    t.string   "image",       default: "http://www.vbdl.org/wp-content/uploads/2015/09/cartoon-zombies-373177.jpg"
-    t.datetime "created_at",                                                                                        null: false
-    t.datetime "updated_at",                                                                                        null: false
+    t.string   "image",       default: "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
+    t.datetime "created_at",                                                                                       null: false
+    t.datetime "updated_at",                                                                                       null: false
     t.integer  "category_id"
     t.string   "status"
+    t.integer  "bedrooms"
+    t.integer  "bathrooms"
   end
 
   add_index "bunkers", ["category_id"], name: "index_bunkers_on_category_id", using: :btree
