@@ -26,13 +26,12 @@
 
             <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>
             <span class="right activator grey-text text-darken-4 card-price"><%= number_to_currency(bunker.price) %></span>
-            <div class="add-to-duffel center-align">
-              <%= link_to "Add to Duffel", duffel_items_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
+            <div class="add-to-cart center-align">
+              <%= link_to "Add to Cart", cart_bunkers_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
             </div>
           </div>
           <div class="card-reveal">
 
-            <span class="card-title grey-text text-darken-4"><%= link_to bunker.title, bunker %><i class="material-icons right">close</i></span>
             <p><%= bunker.description %></p>
           </div>
         </div> <!-- end of card -->
