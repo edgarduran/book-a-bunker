@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :item do
+  factory :bunker do
     title
     description
     price 10
@@ -47,15 +47,15 @@ FactoryGirl.define do
     "email#{n}@zombiez.com"
   end
 
-  factory :category do
-    title
-
-    factory :category_with_items do
-      items { create_list(:item, 2) }
-    end
-  end
-
-  factory :order do
-    items { create_list(:item, 2) }
-  end
+  # factory :category do
+  #   title
+  #
+  #   factory :category_with_items do
+  #     items { create_list(:item, 2) }
+  #   end
+  # end
+  #
+  # factory :order do
+  #   items { create_list(:item, 2) }
+  # end
 end

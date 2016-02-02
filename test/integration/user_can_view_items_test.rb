@@ -2,14 +2,14 @@ require "test_helper"
 
 class UserCanViewAllItemsTest < ActionDispatch::IntegrationTest
   test "displays all items" do
-    skip
-    item_1, item_2 = create_list(:item, 2)
 
-    visit "/items"
+    bunker_1, bunker_2 = create_list(:bunker, 2)
 
-    assert page.has_content?(item_1.title)
-    assert page.has_content?(item_2.title)
-    assert page.has_content?(item_1.price)
+    visit "/bunkers"
+
+    assert page.has_content?(bunker_1.title)
+    assert page.has_content?(bunker_2.title)
+    assert page.has_content?(bunker_1.price)
     assert page.has_css?("img[src='https://www.wpclipart.com/weapons/axe/Axe_red.svg']")
   end
 end

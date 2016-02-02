@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show]
 
-  resources :items, only: [:index, :show]
+  resources :bunkers, only: [:index, :show]
   resources :categories, only: [:show], param: :title
   resources :duffel_items, only: [:create, :update]
 

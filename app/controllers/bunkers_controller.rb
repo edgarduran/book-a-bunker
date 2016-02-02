@@ -1,11 +1,11 @@
-class ItemsController < ApplicationController
+class BunkersController < ApplicationController
   def index
-    @items = Item.all
+    @bunkers = Bunker.all
   end
 
   def show
-    @item = Item.find(params[:id])
-    if @item.active?
+    @bunker = Bunker.find(params[:id])
+    if @bunker.active?
       @partial = "partials/add_to_duffel"
     else
       @partial = "partials/sold_out"
