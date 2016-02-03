@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   scope :safe_houses, -> { where(safe_house: true) }
 
   has_many :orders
-
-  enum role: %w(default admin)
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
   after_validation :geocode
   geocoded_by :full_street_address
@@ -22,4 +22,17 @@ class User < ActiveRecord::Base
   def self.safe_houses
     where(safe_house: 1)
   end
+
+  def platform_admin?
+    roles.exists?(name: "platform_admin")
+  end
+
+  def store_admin?
+    roles.exists?(name: "store_admin")
+  end
+
+  def registered_user?
+    roles.exists?(name: "registered_user")
+  end
+
 end

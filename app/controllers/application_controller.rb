@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
                 :current_user,
                 :current_admin?,
                 :unauthenticated_user_error
-  before_action :set_duffel
+  before_action :set_duffel,
+                :authorize!
 
   def all_locations
     Location.all
@@ -16,6 +17,17 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_permission
+    @current_permission ||= PermissionService.new(current_user)
+  end
+
+  def authorize!
+    unless current_permission.allow?(params[:controller], params[:action])
+      flash[:notice] = "Page does not exist."
+      redirect_to root_path
+    end
   end
 
   def current_admin?
