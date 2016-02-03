@@ -3,7 +3,7 @@ class PermissionService
   attr_reader :user, :controller, :action
 
   def initialize(user)
-    @user = user
+    @user = user || User.new
   end
 
   def allow?(controller, action)
