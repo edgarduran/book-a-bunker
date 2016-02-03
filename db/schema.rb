@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202225214) do
+ActiveRecord::Schema.define(version: 20160203211414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(version: 20160202225214) do
     t.integer  "bedrooms"
     t.integer  "bathrooms"
     t.integer  "location_id"
+    t.integer  "store_id"
   end
 
   add_index "bunkers", ["location_id"], name: "index_bunkers_on_location_id", using: :btree
+  add_index "bunkers", ["store_id"], name: "index_bunkers_on_store_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "city"
@@ -74,6 +76,19 @@ ActiveRecord::Schema.define(version: 20160202225214) do
 
   add_index "photos", ["item_id"], name: "index_photos_on_item_id", using: :btree
 
+  create_table "stores", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "stores", ["location_id"], name: "index_stores_on_location_id", using: :btree
+  add_index "stores", ["user_id"], name: "index_stores_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -92,8 +107,11 @@ ActiveRecord::Schema.define(version: 20160202225214) do
   end
 
   add_foreign_key "bunkers", "locations"
+  add_foreign_key "bunkers", "stores"
   add_foreign_key "order_items", "bunkers", column: "item_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "bunkers", column: "item_id"
+  add_foreign_key "stores", "locations"
+  add_foreign_key "stores", "users"
 end
