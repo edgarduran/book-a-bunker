@@ -4,19 +4,19 @@
   <div class="center-align col s3 order-status-side-bar">
     <h4>Order Status</h4>
     <div id="all-orders">
-      <%= link_to "All Orders", admin_dashboard_path, id:"all-orders-filter", class:"btn black category-link first-link" %>
+      <%= link_to "All Orders", admin_dashboard_path, id:"all-orders-filter", class:"btn black location-link first-link" %>
     </div>
     <div id="ordered-orders">
-      <%= link_to "Ordered", admin_dashboard_path(filter: "ordered"), id:"ordered-filter", class:"btn black category-link" %>
+      <%= link_to "Ordered", admin_dashboard_path(filter: "ordered"), id:"ordered-filter", class:"btn black location-link" %>
     </div>
     <div id="paid-orders">
-      <%= link_to "Paid", admin_dashboard_path(filter: "paid"), id:"paid-filter", class:"btn black category-link" %>
+      <%= link_to "Paid", admin_dashboard_path(filter: "paid"), id:"paid-filter", class:"btn black location-link" %>
     </div>
     <div id="canceled-orders">
-      <%= link_to "Canceled", admin_dashboard_path(filter:"canceled"), data: {id: "canceled"}, id:"canceled-filter", class:"btn black category-link" %>
+      <%= link_to "Canceled", admin_dashboard_path(filter:"canceled"), data: {id: "canceled"}, id:"canceled-filter", class:"btn black location-link" %>
     </div>
     <div id="completed-orders">
-      <%= link_to "Completed", admin_dashboard_path(filter: "completed"), id:"completed-filter", class:"btn black category-link" %>
+      <%= link_to "Completed", admin_dashboard_path(filter: "completed"), id:"completed-filter", class:"btn black location-link" %>
     </div>
     <div class="item-manager">
       <h4>Item Manager</h4>

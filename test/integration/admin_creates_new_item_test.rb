@@ -3,7 +3,7 @@ require "test_helper"
 class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
   test "newly created item created item can be seen on item index page" do
     skip
-    Category.create(title: "Books")
+    Location.create(title: "Books")
     admin = create_admin
     login(admin)
     default_image =
@@ -13,7 +13,7 @@ class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
     fill_in "Title", with: "Baseball Bat"
     fill_in "Description", with: "Home run!"
     fill_in "Price", with: 20
-    select "Books", from: "item[category_id]"
+    select "Books", from: "item[location_id]"
     click_on "Submit"
 
     assert_equal item_path(Item.last), current_path
@@ -26,7 +26,7 @@ class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
 
   test "admin can upload image with new item" do
     skip
-    Category.create(title: "Books")
+    Location.create(title: "Books")
     admin = create_admin
     login(admin)
     default_image =
@@ -40,7 +40,7 @@ class AdminCreatesNewItemTest < ActionDispatch::IntegrationTest
     fill_in "Image", with: item_image
     fill_in "Description", with: "Home run!"
     fill_in "Price", with: 20
-    select "Books", from: "item[category_id]"
+    select "Books", from: "item[location_id]"
     click_on "Submit"
 
     assert_equal item_path(Item.last), current_path

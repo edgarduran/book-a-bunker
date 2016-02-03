@@ -1,0 +1,6 @@
+<h2>Locations</h2>
+
+<% @locations.each do |location| %>
+  <h4><%= location.city.titleize %></h4>
+  <%= link_to "View Listings", location_path(location) %>
+<% end %>

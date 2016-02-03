@@ -1,5 +1,5 @@
 class Bunker < ActiveRecord::Base
-  belongs_to :category
+  belongs_to :location
   has_many :orders, through: :order_items
   has_many :order_items
   before_create :set_status

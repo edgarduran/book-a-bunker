@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :show]
 
   resources :bunkers, only: [:index, :show]
-  resources :categories, only: [:show], param: :title
-  resources :duffel_items, only: [:create, :update]
+  resources :locations, only: [:show, :index]
+  resources :cart_bunkers, only: [:create, :update]
 
   get "/dashboard", to: "users#show"
-  get "/duffel", to: "duffel_items#index"
+  get "/cart", to: "cart_items#index"
   get "/rules", to: "resources#rules"
 
   get "/login", to: "sessions#new"

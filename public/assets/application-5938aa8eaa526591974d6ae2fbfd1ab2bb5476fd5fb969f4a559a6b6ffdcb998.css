@@ -114,23 +114,23 @@ a.brand-logo {
   color: black;
 }
 
-/* Categories Side Bar */
+/* Locations Side Bar */
 
-.categories-side-bar {
+.locations-side-bar {
   height: 600px;
   font-family: "Special Elite";
   display: block;
   margin-top: 40px;
 }
 
-.category-link {
+.location-link {
   width: 220px;
   height: 50px;
   margin-top: 20px;
   padding-top: 6px;
 }
 
-.category-link a {
+.location-link a {
 }
 
 .first-link {

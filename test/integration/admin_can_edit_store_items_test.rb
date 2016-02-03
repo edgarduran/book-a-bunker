@@ -4,14 +4,14 @@ class AdminCanEditItemsTest < ActionDispatch::IntegrationTest
     admin = create_admin
     login(admin)
 
-    cat_1 = Category.create(title: "Coolness")
-    cat_2 = Category.create(title: "Radness")
+    cat_1 = Location.create(title: "Coolness")
+    cat_2 = Location.create(title: "Radness")
 
     item = Item.create(
       title: "Hydrogen Peroxide",
       description: "For those pesky blood stains",
       price: 3,
-      category_id: cat_1.id
+      location_id: cat_1.id
     )
 
     visit item_path(item)
@@ -20,7 +20,7 @@ class AdminCanEditItemsTest < ActionDispatch::IntegrationTest
 
     fill_in "Title", with: "Hydrogen Peroxide Jumbo Size"
     fill_in "Price", with: 10
-    select "Radness", from: "item[category_id]"
+    select "Radness", from: "item[location_id]"
 
     click_on "Update Item"
 

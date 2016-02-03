@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202213252) do
+ActiveRecord::Schema.define(version: 20160202225214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(version: 20160202213252) do
     t.string   "image",       default: "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
     t.datetime "created_at",                                                                                       null: false
     t.datetime "updated_at",                                                                                       null: false
-    t.integer  "category_id"
     t.string   "status"
     t.integer  "bedrooms"
     t.integer  "bathrooms"
+    t.integer  "location_id"
   end
 
-  add_index "bunkers", ["category_id"], name: "index_bunkers_on_category_id", using: :btree
+  add_index "bunkers", ["location_id"], name: "index_bunkers_on_location_id", using: :btree
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "title"
+  create_table "locations", force: :cascade do |t|
+    t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20160202213252) do
     t.integer  "safe_house",      default: 0
   end
 
-  add_foreign_key "bunkers", "categories"
+  add_foreign_key "bunkers", "locations"
   add_foreign_key "order_items", "bunkers", column: "item_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
