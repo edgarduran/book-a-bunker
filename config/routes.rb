@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :show]
 
   resources :bunkers, only: [:index, :show]
-  resources :categories, only: [:show], param: :title
+  resources :locations, only: [:show, :index]
   resources :cart_bunkers, only: [:create, :update]
 
   get "/dashboard", to: "users#show"

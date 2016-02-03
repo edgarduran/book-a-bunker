@@ -1,10 +1,10 @@
 class Admin::ItemsController < Admin::BaseController
   before_action :find_item, only: [:edit, :update, :destroy]
-  before_action :find_categories, only: [:edit, :update]
+  before_action :find_locations, only: [:edit, :update]
 
   def new
     @item = Item.new
-    @categories = Category.all
+    @locations = Location.all
   end
 
   def create
@@ -40,7 +40,7 @@ class Admin::ItemsController < Admin::BaseController
       :title,
       :description,
       :price,
-      :category_id,
+      :location_id,
       :image
     )
   end
@@ -49,7 +49,7 @@ class Admin::ItemsController < Admin::BaseController
     @item = Item.find(params[:id])
   end
 
-  def find_categories
-    @categories = Category.all
+  def find_locations
+    @locations = Location.all
   end
 end

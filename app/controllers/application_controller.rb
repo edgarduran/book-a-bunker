@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :all_categories,
+  helper_method :all_locations,
                 :current_user,
                 :current_admin?,
                 :unauthenticated_user_error
   before_action :set_duffel
 
-  def all_categories
-    Category.all
+  def all_locations
+    Location.all
   end
 
   def set_duffel

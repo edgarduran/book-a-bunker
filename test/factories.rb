@@ -47,10 +47,15 @@ FactoryGirl.define do
     "email#{n}@zombiez.com"
   end
 
-  # factory :category do
-  #   title
-  #
-  #   factory :category_with_items do
+  factory :location do
+    city
+  end
+
+  sequence :city do |n|
+    "City#{n}"
+  end
+
+  #   factory :location_with_items do
   #     items { create_list(:item, 2) }
   #   end
   # end
