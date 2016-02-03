@@ -15,9 +15,15 @@
 
 <body class = "hero-image">
 
-  <div >
+  <div class="row white-text">
     <h3>It's Getting Dark....</h3>
-    <%= link_to "Find Shelter", bunkers_path, class: "enter" %>
+    <%= link_to "Find Shelter", {:controller => 'home', :action => 'welcome', :anchor => 'bottom_anchor'}, class: "enter" %>
+  </div>
+  <div class="row">
+    <img src="assets/US_Map.svg.png" class="locations-map"/>
+  </div>
+  <div class="bottom-anchor">
+    <a name="bottom_anchor"></a>
   </div>
 
 <!--Import jQuery before materialize.js-->
