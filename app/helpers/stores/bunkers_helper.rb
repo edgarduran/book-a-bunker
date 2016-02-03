@@ -1,0 +1,2 @@
+module Stores::BunkersHelper
+end
