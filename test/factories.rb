@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :bunker do
     title
     description
@@ -8,11 +9,24 @@ FactoryGirl.define do
   end
 
   sequence :title do |n|
-    "Title#{n}"
+    "Title #{n}"
   end
 
   sequence :description do |n|
-    "Description#{n}"
+    "Description #{n}"
+  end
+
+  factory :store do
+    name
+    description
+
+    factory :store_with_bunkers do
+      bunkers { create_list(:bunker, 2) }
+    end
+  end
+
+  sequence :name do |n|
+    "Name #{n}"
   end
 
   factory :user do
@@ -52,7 +66,7 @@ FactoryGirl.define do
   end
 
   sequence :city do |n|
-    "City#{n}"
+    "City #{n}"
   end
 
   #   factory :location_with_items do

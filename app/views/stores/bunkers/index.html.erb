@@ -1,0 +1,8 @@
+<h1><%= @store.name %></h1>
+<h3><%= @store.description %></h3>
+
+<ul>
+  <% @store.bunkers.each do |bunker| %>
+    <li><%= bunker.title %></li>
+  <% end %>
+</ul>

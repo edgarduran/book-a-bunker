@@ -7,7 +7,7 @@ include ActionView::Helpers::NumberHelper
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
+  # fixtures :all
   SimpleCov.start("rails")
   include FactoryGirl::Syntax::Methods
 end

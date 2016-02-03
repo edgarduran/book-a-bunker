@@ -35,6 +35,10 @@ class Seed
     end
   end
 
+  # def generate_stores
+  #
+  # end
+
   # def generate_users
   #   5.times do |i|
   #     User.create(name: Faker::Name.name, email: Faker::Internet.email)
