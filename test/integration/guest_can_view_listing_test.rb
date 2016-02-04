@@ -3,8 +3,7 @@ require 'test_helper'
 class GuestCanViewListingTest < ActionDispatch::IntegrationTest
   test 'guest can view bunker index' do
     create_list(:bunker, 5)
-    visit '/'
-    click_on "Find Shelter"
+    visit bunkers_path
 
     assert page.has_content? "Bunkers"
     assert_equal bunkers_path, current_path

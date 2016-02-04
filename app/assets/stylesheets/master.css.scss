@@ -20,15 +20,28 @@
   font-family: "Impact Label Reversed";
   font-size: 45px;
   color: #C9D1D4;
-  width: 700px;
-  height: 100px;
+  width: 400px;
+  height: 75px;
   padding: 20px;
   position: absolute;
-  top: 50%;
+  top: 18%;
   left: 50%;
   margin: -70px 0 0 -230px;
 }
 
 a.enter:hover {
   color: #424647;
+}
+
+.locations-map {
+  position: absolute;
+  display: block;
+  left: 15%;
+  z-index: -1;
+  top: 20%;
+}
+
+.bottom-anchor {
+  position: absolute;
+  bottom: 0%;
 }
