@@ -8,8 +8,8 @@ class GuestCanViewLocationsMapTest < ActionDispatch::IntegrationTest
     click_link "Find Shelter"
 
     assert_equal root_path, current_path
-    assert page.has_content?("Locations")
-    assert page.has_css?('locations_map')
+    assert page.has_content?("Find Shelter")
+    assert page.has_css?('.locations-map')
   end
 
 end
