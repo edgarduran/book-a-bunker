@@ -1,41 +1,26 @@
 <div class="row">
+  <h1 class="center-align index-h1">Available Bunkers</h1>
 
-  <div class="center-align locations-side-bar col s3">
-    <h3>Locations</h3>
-    <div>
-      <%= link_to "All Bunkers", bunkers_path, class:"btn black location-link first-link" %>
-    </div>
-    <% all_locations.each do |location| %>
-      <div>
-        <%= link_to location.city.capitalize, location_path(location.city), class:"btn location-link black" %>
+  <div class="bunkers-container site-font">
+    <% target.each do |bunker| %>
+    <center><div class="card">
+      <div class="card-image">
+        <img class="activator" src=<%= bunker.image %>>
       </div>
+      <br><br>
+      <div class="row">
+        <div class="bunker-description col s6">
+          <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>
+          <p><%= bunker.description %></p>
+        </div>
+        <br><br>
+        <span class="activator grey-text text-darken-4 card-price"><%= number_to_currency(bunker.price) %></span>
+        <br><br>
+        <div class="add-to-cart">
+          <%= link_to "Add to Cart", cart_bunkers_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
+        </div>
+      </div>
+    </div></center> <!-- end of card -->
     <% end %>
-  </div> <!--end of locations side bar -->
-
-  <div class="bunkers-column col s9">
-    <h1 class="center-align index-h1">Everything you could possibly need to survive....</h1>
-    <h3 class="center-align">Not a single thing missing, nope.</h3>
-
-    <div class="bunkers-container site-font">
-      <% target.each do |bunker| %>
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src=<%= bunker.image %>>
-          </div>
-          <div class="card-content">
-
-            <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>
-            <span class="right activator grey-text text-darken-4 card-price"><%= number_to_currency(bunker.price) %></span>
-            <div class="add-to-cart center-align">
-              <%= link_to "Add to Cart", cart_bunkers_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
-            </div>
-          </div>
-          <div class="card-reveal">
-
-            <p><%= bunker.description %></p>
-          </div>
-        </div> <!-- end of card -->
-      <% end %>
-    </div> <!-- end of Bunkers Container -->
-  </div> <!-- end of Bunkers Column -->
-</div> <!-- end of row -->
+  </div> <!-- end of Bunkers Container -->
+</div>
