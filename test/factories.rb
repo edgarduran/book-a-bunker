@@ -39,10 +39,6 @@ role nil
   factory :user do
     first_name
     last_name
-    address "1510 Blake St"
-    city "Denver"
-    state "CO"
-    zipcode "80202"
     email
     password "password"
     password_confirmation "password"
@@ -76,12 +72,12 @@ role nil
     "City #{n}"
   end
 
-  #   factory :location_with_items do
-  #     items { create_list(:item, 2) }
-  #   end
-  # end
-  #
-  # factory :order do
-  #   items { create_list(:item, 2) }
-  # end
+  factory :location_with_bunkers do
+    bunkers { create_list(:bunker, 2) }
+  end
+
+
+  factory :order do
+    bunkers { create_list(:bunker, 2) }
+  end
 end

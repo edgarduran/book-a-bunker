@@ -61,7 +61,7 @@
   </ul>
 
   <ul id="account-dropdown1" class="dropdown-content">
-    <% if current_user && current_user.admin? %>
+    <% if platform_admin? %>
       <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
       <li class="divider"></li>
     <% end %>
@@ -71,7 +71,7 @@
     <li class="divider"></li>
   </ul>
   <ul id="account-dropdown2" class="dropdown-content">
-    <% if current_user && current_user.admin? %>
+    <% if platform_admin? %>
       <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
       <li class="divider"></li>
     <% end %>

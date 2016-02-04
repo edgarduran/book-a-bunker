@@ -30,15 +30,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_admin?
-    current_user && current_user.admin?
-  end
-
-  def unauthenticated_user_error
-    render(file: "/public/404") unless current_user
-  end
-
-  def redirect_path(referrer, normal_redirect)
-    referrer || normal_redirect
-  end
+  # def current_admin?
+  #   current_user && current_user.admin?
+  # end
+  #
+  # def unauthenticated_user_error
+  #   render(file: "/public/404") unless current_user
+  # end
+  #
+  # def redirect_path(referrer, normal_redirect)
+  #   referrer || normal_redirect
+  # end
 end
