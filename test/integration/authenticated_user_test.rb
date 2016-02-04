@@ -1,39 +1,53 @@
 require "test_helper"
 
 class AuthenticatedUserTest < ActionDispatch::IntegrationTest
-  test "user can create account and then see logout button and logout" do
-    skip
-    item = create(:item)
-    visit items_path
-    click_link "Add to Duffel"
+  test "guest is prompted to login before checking out" do
+    create(:bunker)
+    visit bunkers_path
+    click_link "Add to Cart"
+    within ".main-nav" do
+      click_on "My Cart"
+    end
+    click_on "Checkout"
 
-    visit new_user_path
+    assert_equal login_path, current_path
+  end
 
-    fill_in "First name", with: "Penney"
-    fill_in "Last name", with: "Gadget"
-    fill_in "Address", with: "1510 Blake St"
-    fill_in "City", with: "Denver"
-    fill_in "State", with: "CO"
-    fill_in "Zipcode", with: "80202"
-    fill_in "Email", with: "theworldisending@uhoh.com"
+  test "after login user is redirected to cart they previously started" do
+    user = create(:user)
+    bunker = create(:bunker)
+    visit bunkers_path
+    click_link "Add to Cart"
+    within ".main-nav" do
+      click_on "My Cart"
+    end
+    click_on "Checkout"
+
+    assert_equal login_path, current_path
+    fill_in "Email", with: user.email
     fill_in "Password", with: "password"
-    fill_in "Password confirmation", with: "password"
-    click_link_or_button "Submit"
+    within "#login-form" do
+      click_on "Login"
+    end
 
-    assert_equal "/dashboard", current_path
+    assert_equal cart_path, current_path
+    assert page.has_content? bunker.title
 
-    assert page.has_content? "Logged in as Penney"
-    assert page.has_content? "Penney Gadget"
-    assert page.has_content? "theworldisending@uhoh.com"
     refute page.has_content? "Login"
     assert page.has_content? "Logout"
+  end
 
-    visit "/duffel"
-    assert page.has_content? item.title
+  test "user can log out and is redirected to root page" do
+    user = create(:user)
+    login(user)
+
+    assert_equal dashboard_path, current_path
+    assert page.has_content?("#{user.first_name}")
+    assert page.has_content?("Logged in as #{user.first_name}")
 
     within ".main-nav" do
-      click_link "Logout"
+      click_on "Logout"
     end
-    assert page.has_content? "Prepare yourself..."
+    assert_equal login_path, current_path
   end
 end
