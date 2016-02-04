@@ -2,8 +2,10 @@ require "test_helper"
 
 class UserCanViewBunkersTest < ActionDispatch::IntegrationTest
   test "displays all bunkers" do
-
+    location = create(:location)
     bunker_1, bunker_2 = create_list(:bunker, 2)
+    location.bunkers << bunker_1
+    location.bunkers << bunker_2
 
     visit "/bunkers"
 

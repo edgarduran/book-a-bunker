@@ -15,8 +15,7 @@ class GuestCanViewLocationsTest < ActionDispatch::IntegrationTest
     location = create(:location)
     bunker   = create(:bunker)
     location.bunkers << bunker
-    visit locations_path
-    click_on "View Listings"
+    visit location_path(location)
 
     assert_equal location_path(location), current_path
     assert_equal 1, Bunker.count
