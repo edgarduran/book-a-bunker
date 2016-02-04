@@ -20,11 +20,11 @@
   font-family: "Impact Label Reversed";
   font-size: 45px;
   color: #C9D1D4;
-  width: 700px;
-  height: 100px;
+  width: 400px;
+  height: 75px;
   padding: 20px;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   margin: -70px 0 0 -230px;
 }
@@ -36,10 +36,9 @@ a.enter:hover {
 .locations-map {
   position: absolute;
   display: block;
-  left: 25%;
+  left: 15%;
   z-index: -1;
-  top: 100%;
-  padding-bottom: 50px;
+  top: 25%;
 }
 
 .bottom-anchor {
