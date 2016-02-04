@@ -33,7 +33,7 @@ class Seed
         title: Faker::Lorem.word,
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image: Faker::Avatar.image,
+        image: 'assets/futuristic-bunker.jpg',
         bedrooms: Faker::Number.between(1, 5),
         bathrooms: Faker::Number.between(0, 3)
       )

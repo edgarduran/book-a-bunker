@@ -3,10 +3,10 @@
   <div class="bunkers-container site-font">
     <% target.each do |bunker| %>
     <center><div class="card">
-      <div class="card-image">
+      <div class="card-image col s3" >
         <img class="activator" src=<%= bunker.image %>>
       </div>
-      <br><br>
+      <br>
       <div class="row">
         <div class="bunker-description col s6">
           <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>

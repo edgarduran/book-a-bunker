@@ -155,6 +155,7 @@ a.brand-logo {
 .card-image img {
   width: 180px;
   height: 180px;
+  padding-top: 30px;
 }
 
 .item-title {
@@ -205,6 +206,7 @@ a.brand-logo {
 
 .quantity-button {
   padding: 0px 10px;
+  padding-right: 25px;
   position: relative;
   top: 3px;
   color: black;
