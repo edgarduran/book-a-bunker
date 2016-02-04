@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Book A Bunker</title>
+  <title>Book a Bunker</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!--Import Google Icon Font-->
   <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -83,7 +84,7 @@
   <!-- Nav Structure -->
   <nav>
     <div class="nav-wrapper">
-      <%= link_to "Aberzombie & Fitch", bunkers_path, class:"brand-logo" %>
+      <%= link_to "Book a Bunker", bunkers_path, class:"brand-logo" %>
       <a href="#" data-activates="mobile-demo" class="button-collapse right menu-icon"><i class="material-icons">menu</i></a>
       <ul class="main-nav right hide-on-med-and-down">
         <% if current_user %>

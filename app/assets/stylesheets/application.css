@@ -20,14 +20,29 @@
   src: url("/assets/survival_horror.ttf");
 }
 
+@font-face {
+  font-family: "Impact Label";
+  src: url("/assets/Impact Label.ttf");
+}
+
+@font-face {
+  font-family: "Impact Label Reversed";
+  src: url("/assets/Impact Label Reversed.ttf");
+}
+
+@font-face {
+  font-family: "Rough Typewriter";
+  src: url("/assets/rough_typewriter.otf");
+}
+
 /* Headers */
 h1 {
   font-size: 2.5em;
-    font-family: "Special Elite";
+  font-family: "Impact Label";
 }
 
 h3 {
-  font-family: "Special Elite";
+  font-family: "Impact Label";
 }
 
 .admin-header {
@@ -41,17 +56,17 @@ h3 {
 /* Nav Bar */
 
 .nav-wrapper {
-  background-color: rgb(36, 3, 6);
+  background-color: rgb(25, 3, 6);
 }
 
 .nav-wrapper li{
   padding-right: 20px;
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
 }
 
 a.brand-logo {
   padding-left: 20px;
-  font-family: "Special Elite";
+  font-family: "Impact Label Reversed";
 }
 
 .dropdown-content {
@@ -83,7 +98,7 @@ a.brand-logo {
 
 .locations-side-bar {
   height: 600px;
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   display: block;
   margin-top: 40px;
 }
@@ -102,37 +117,39 @@ a.brand-logo {
   margin-top: 40px;
 }
 
-  /* Items Section */
+  /* bunkers Section */
 
 .card-title a {
   color: rgb(36, 3, 6);
 }
 
-.items-column {
+.bunkers-column {
   padding: 10px;
 }
 
-.items-container {
+.bunkers-container {
   margin: 0 auto;
-  padding-left: 50px;
 }
 
 .index-h1 {
+  font-size: 3em;
+}
+
+.bunker-title {
   font-size: 2.2em;
 }
 
   /* Item Cards */
 
 .card {
-  width: 250px;
-  height: 320px;
+  width: 80%;
+  height: 250px;
   display: inline-block;
-  margin: 10px;
   background-color: rgba(219, 211, 202, .6)
 }
 
 .card-image {
-  margin: 10px;
+  float: left;
 }
 
 .card-image img {
@@ -149,22 +166,25 @@ a.brand-logo {
 }
 
 .site-font {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
 }
 
-.add-to-duffel a{
-  margin-top: 10px;
+.add-to-cart a{
+  float: right;
+  margin-right: 45px;
+  font-family: "Impact Label Reversed";
+  font-size: 1.1em;
 }
 
 
-/* Duffel & Individual Past Order */
+/* Cart & Individual Past Order */
 
 .cart-image img, .order-image img {
   height: 100px;
   width: 100px;
 }
 
-.duffel-table, .order-table {
+.bunker-table, .order-table {
     background-color: rgba(219, 211, 202, .6);
 }
 
@@ -175,7 +195,7 @@ a.brand-logo {
 }
 
 .table-headers {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-size: 1.3em;
 }
 
@@ -211,7 +231,7 @@ a.brand-logo {
 
 .order-status-side-bar {
   height: 600px;
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
 }
 
 .item-manager {
@@ -233,7 +253,7 @@ a.brand-logo {
 
 #login-form, #user-form, #item-form, #outbreak-form {
   background-color: rgba(219, 211, 202, .6);
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   width: 50%;
   margin-top: 20px;
@@ -243,6 +263,7 @@ a.brand-logo {
 .submit-btn {
   padding: 10px;
   margin: 5px;
+  font-family: "Impact Label Reversed";
 }
 
 .form-text {
@@ -263,7 +284,7 @@ a.brand-logo {
 }
 
 #required-field {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   width: 50%;
   font-size: .9em
@@ -284,7 +305,7 @@ a.brand-logo {
 /*Flash Notices*/
 
 .flashes {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.6em;
 
@@ -304,7 +325,7 @@ a.brand-logo {
   height: 500px;
   margin: 10px auto;
   background-color: rgba(219, 211, 202, .6);
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.4em;
 }
@@ -314,7 +335,7 @@ a.brand-logo {
 }
 
 .user-name {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.8em;
 }
@@ -330,7 +351,7 @@ a.brand-logo {
 }
 
 .order-item-title, .item-subtotal, .order-subtotal, .item-price, .order-item-quantity {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.4em;
   color: black;
@@ -344,13 +365,13 @@ a.brand-logo {
 /*All Past Orders*/
 
 .order-date, .order-price {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.8em;
 }
 
 .button {
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.2em;
 }
@@ -381,6 +402,8 @@ html, body { height: 100%; margin: 0; padding: 0; }
 
 .create-acct a {
   padding-top:4px;
+  font-family: "Rough Typewriter";
+  font-size: .9em;
 }
 
 /*Rules Page*/
@@ -392,7 +415,7 @@ html, body { height: 100%; margin: 0; padding: 0; }
   margin-top: 50px;
   margin-bottom: 50px;
   background-color: rgba(219, 211, 202, .6);
-  font-family: "Special Elite";
+  font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.4em;
 }
