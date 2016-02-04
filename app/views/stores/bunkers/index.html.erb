@@ -1,8 +1,8 @@
-<h1><%= @store.name %></h1>
-<h3><%= @store.description %></h3>
+<h1><%= @current_store.name %></h1>
+<h5><%= @current_store.description %></h5>
 
 <ul>
-  <% @store.bunkers.each do |bunker| %>
+  <% @bunkers.each do |bunker| %>
     <li><%= bunker.title %></li>
   <% end %>
 </ul>

@@ -2,6 +2,7 @@ class Seed
   def self.start
     seed = Seed.new
     seed.generate_bunkers
+    seed.generate_stores
     seed.generate_locations
   end
 
@@ -9,7 +10,16 @@ class Seed
     20.times do |i|
       location = Location.create(city: Faker::Address.city)
       puts "Created City #{i}: #{location.city}"
-      add_bunkers(location)
+      add_bunkers_to_location(location)
+    end
+  end
+
+  def generate_stores
+    20.times do |i|
+      store = Store.create(name: Faker::Company.name,
+                           description: Faker::Company.catch_phrase)
+      puts "Created Store #{i}: #{store.name}"
+      add_bunkers_to_store(store)
     end
   end
 
@@ -27,7 +37,7 @@ class Seed
     end
   end
 
-  def add_bunkers(location)
+  def add_bunkers_to_location(location)
     3.times do |i|
       puts "Added Bunkers to Location #{location.id}"
       bunker = Bunker.offset(rand(Bunker.count)).first
@@ -35,9 +45,13 @@ class Seed
     end
   end
 
-  # def generate_stores
-  #
-  # end
+  def add_bunkers_to_store(store)
+    3.times do |i|
+      puts "Added Bunkers to Store #{store.id}"
+      bunker = Bunker.offset(rand(Bunker.count)).first
+      store.bunkers << bunker
+    end
+  end
 
   # def generate_users
   #   5.times do |i|

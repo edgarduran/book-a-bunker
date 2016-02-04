@@ -1,9 +1,10 @@
-class Stores::BunkersController < ApplicationController
+class Stores::BunkersController < Stores::StoresController
+
   def index
-    @store = Store.find_by(slug: params[:store])
-    @bunkers = @store.bunkers
+    @bunkers = current_store.bunkers
   end
 
   def show
   end
+  
 end
