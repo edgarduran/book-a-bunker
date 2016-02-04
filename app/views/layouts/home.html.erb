@@ -18,21 +18,15 @@
   <div class="white-text">
     <h3>It's Getting Dark....</h3>
     <!-- <%= link_to "Find Shelter", bunkers_path, class: "enter" %> -->
-    <%= render partial: 'partials/location_dropdown' %>
+    <%= render partial: 'partials/location_dropdown', locals: {locations: @locations} %>
   </div>
-  <div class="container">
+  <div class="container center-align">
     <img src="assets/US_Map_Whole.jpg" class="locations-map"/>
   </div>
-    <!-- <div class="container">
-      <%= render partial: 'partials/location_dropdown' %>
-    </div> -->
 
-
-
-
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>
 </html>

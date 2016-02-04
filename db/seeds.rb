@@ -1,16 +1,20 @@
 class Seed
   def self.start
     seed = Seed.new
-    seed.generate_bunkers
-    seed.generate_stores
+    # seed.generate_bunkers
     seed.generate_locations
+    seed.generate_stores
   end
 
   def generate_locations
-    20.times do |i|
-      location = Location.create(city: Faker::Address.city)
-      puts "Created City #{i}: #{location.city}"
-      add_bunkers_to_location(location)
+    locations = ["Atlanta", "Augusta", "Bismarck", "Charlotte", "Chicago",
+                 "Dallas", "Denver", "Detroit", "Green Bay", "Kansas City",
+                 "Los Angeles", "Memphis", "Miami", "New Orleans", "New York",
+                 "Phoenix", "Portland", "Salt Lake City", "San Francisco", "Washington, D.C."]
+    locations.each do |location|
+      city = Location.create(city: location)
+      puts "Created City: #{city.city}"
+      generate_bunkers(city)
     end
   end
 
@@ -23,8 +27,8 @@ class Seed
     end
   end
 
-  def generate_bunkers
-    60.times do |i|
+  def generate_bunkers(target)
+    50.times do |i|
       bunker = Bunker.create(
         title: Faker::Lorem.word,
         description: Faker::Lorem.paragraph,
@@ -34,14 +38,7 @@ class Seed
         bathrooms: Faker::Number.between(0, 3)
       )
       puts "Created Bunker #{i}: #{bunker.title}"
-    end
-  end
-
-  def add_bunkers_to_location(location)
-    3.times do |i|
-      puts "Added Bunkers to Location #{location.id}"
-      bunker = Bunker.offset(rand(Bunker.count)).first
-      location.bunkers << bunker
+      target.bunkers << bunker
     end
   end
 

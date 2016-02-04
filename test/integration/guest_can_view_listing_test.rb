@@ -2,7 +2,9 @@ require 'test_helper'
 
 class GuestCanViewListingTest < ActionDispatch::IntegrationTest
   test 'guest can view bunker index' do
-    create_list(:bunker, 5)
+    bunkers = create_list(:bunker, 5)
+    location = create(:location)
+    location.bunkers << bunkers
     visit bunkers_path
 
     assert page.has_content? "Bunkers"
@@ -12,6 +14,9 @@ class GuestCanViewListingTest < ActionDispatch::IntegrationTest
 
   test 'guest can view individual bunker' do
     bunker = create(:bunker)
+    location = create(:location)
+    location.bunkers << bunker
+
     visit bunkers_path
     click_link_or_button bunker.title
 
