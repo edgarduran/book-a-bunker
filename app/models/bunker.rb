@@ -1,8 +1,8 @@
 class Bunker < ActiveRecord::Base
   belongs_to :location
   belongs_to :store
-  has_many :orders, through: :order_items
-  has_many :order_items
+  has_many :orders, through: :order_bunkers
+  has_many :order_bunkers
   before_create :set_status
 
   validates :title, uniqueness: true, presence: true

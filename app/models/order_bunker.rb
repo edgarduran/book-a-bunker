@@ -1,6 +1,6 @@
-class OrderItem < ActiveRecord::Base
+class OrderBunker < ActiveRecord::Base
   belongs_to :order
-  belongs_to :item
+  belongs_to :bunker
   before_create :update_quantity
 
   def update_quantity

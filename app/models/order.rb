@@ -2,8 +2,8 @@ require "date"
 
 class Order < ActiveRecord::Base
   belongs_to :user
-  has_many :items, through: :order_items
-  has_many :order_items
+  has_many :bunkers, through: :order_bunkers
+  has_many :order_bunkers
   before_create :set_status
   scope :ordered, -> { where(status: "ordered") }
   scope :paid, -> { where(status: "paid") }
@@ -26,30 +26,30 @@ class Order < ActiveRecord::Base
     created_at.strftime("%B %e, %Y")
   end
 
-  def item_quantities
-    order_items.each_with_object({}) do |ord_item, quantities|
-      quantities[ord_item.item.title] = ord_item.quantity
+  def bunker_quantities
+    order_bunkers.each_with_object({}) do |ord_bunker, quantities|
+      quantities[ord_bunker.bunker.title] = ord_bunker.quantity
     end
   end
 
-  def item_quantity(item_id)
-    order_items.find_by(item_id: item_id).quantity
+  def bunker_quantity(bunker_id)
+    order_bunkers.find_by(bunker_id: bunker_id).quantity
   end
 
-  def item_subtotals
-    items.map do |item|
-      item_subtotal(item.id)
+  def bunker_subtotals
+    bunkers.map do |bunker|
+      bunker_subtotal(bunker.id)
     end
   end
 
-  def item_subtotal(item_id)
-    item = Item.find(item_id)
-    order_item = order_items.find_by(item_id: item_id)
-    item.price * order_item.quantity
+  def bunker_subtotal(bunker_id)
+    bunker = Bunker.find(bunker_id)
+    order_bunker = order_bunkers.find_by(bunker_id: bunker_id)
+    bunker.price * order_bunker.quantity
   end
 
   def total
-    item_subtotals.sum
+    bunker_subtotals.sum
   end
 
   def self.filter_orders(status)

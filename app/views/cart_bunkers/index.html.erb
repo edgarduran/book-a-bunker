@@ -1,12 +1,12 @@
 <div class="container center">
-  <h1>Your Duffel Bag</h1>
+  <h1>Your Cart</h1>
 </div>
 
 <table class="container bordered highlight site-font">
   <thead>
-    <tr class="duffel-table table-headers">
-        <th class="item-header" data-field="image">Item</th>
-        <th data-field="item"></th>
+    <tr class="cart-table table-headers">
+        <th class="bunker-header" data-field="image">Bunker</th>
+        <th data-field="bunker"></th>
         <th class="center" data-field="quantity">Quantity</th>
         <th class="center" data-field="price">Price</th>
         <th class="center" data-field="total">Total</th>
@@ -15,42 +15,42 @@
   </thead>
 
   <tbody>
-    <% @duffel.duffel_items.each do |item| %>
-      <tr class="order-item-table">
+    <% @cart.cart_bunkers.each do |bunker| %>
+      <tr class="order-bunker-table">
         <td>
           <div class="order-image center">
-            <%= image_tag(item.image) %>
+            <%= image_tag(bunker.image) %>
           </div>
         </td>
 
         <td>
-          <div class="cart-item-info">
-            <%= link_to item.title.capitalize, item, class: "order-item-title" %>
-            <p><%= item.description %></p>
+          <div class="cart-bunker-info">
+            <%= link_to bunker.title.capitalize, bunker, class: "order-bunker-title" %>
+            <p><%= bunker.description %></p>
           </div>
         </td>
 
-        <td class="center order-item-quantity">
-          <%= link_to duffel_item_path(item.id, function: "subtract"), method: :patch do %>
+        <td class="center order-bunker-quantity">
+          <%= link_to cart_bunker_path(bunker.id, function: "subtract"), method: :patch do %>
             <i class="minus-icon material-icons md-18 quantity-button">remove_circle_outline</i>
           <% end %>
-            <span class="item-count"><%= @duffel.count_of(item.id) %></span>
-          <%= link_to duffel_item_path(item.id, function: "add"), method: :patch do %>
+            <span class="bunker-count"><%= @cart.count_of(bunker.id) %></span>
+          <%= link_to cart_bunker_path(bunker.id, function: "add"), method: :patch do %>
             <i class="md-18 material-icons quantity-button">add_circle_outline</i>
           <% end %>
         </td>
 
-        <td class="item-price center"><%= number_to_currency(item.price) %></td>
+        <td class="bunker-price center"><%= number_to_currency(bunker.price) %></td>
 
-        <td class="center item-subtotal"><%= number_to_currency(@duffel.item_subtotal(item.id)) %></td>
+        <td class="center bunker-subtotal"><%= number_to_currency(@cart.bunker_subtotal(bunker.id)) %></td>
         <td>
-          <%= link_to duffel_item_path(item.id, function: "remove"), method: :patch do %>
+          <%= link_to cart_bunker_path(bunker.id, function: "remove"), method: :patch do %>
             <i class="material-icons md-18 remove-button">clear</i>
           <% end %>
         </td>
       </tr>
     <% end %>
-    <tr class="duffel-table order-subtotal">
+    <tr class="cart-table order-subtotal">
       <td></td>
       <td></td>
       <td></td>
@@ -58,7 +58,7 @@
         <strong>Subtotal:</strong>
       </td>
       <td class="center">
-        <%= number_to_currency(@duffel.cart_subtotal) %>
+        <%= number_to_currency(@cart.cart_subtotal) %>
       </td>
       <td></td>
     </tr>

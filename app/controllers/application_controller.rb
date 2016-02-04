@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
                 :current_user,
                 :current_admin?,
                 :unauthenticated_user_error
-  before_action :set_duffel,
+  before_action :set_cart,
                 :authorize!
 
   def all_locations
     Location.all
   end
 
-  def set_duffel
-    @duffel = Duffel.new(session[:duffel])
+  def set_cart
+    @cart = Cart.new(session[:cart])
   end
 
   def current_user
@@ -30,14 +30,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_admin?
-    current_user && current_user.admin?
-  end
-
-  def unauthenticated_user_error
-    render(file: "/public/404") unless current_user
-  end
-
+  # def current_admin?
+  #   current_user && current_user.admin?
+  # end
+  #
+  # def unauthenticated_user_error
+  #   render(file: "/public/404") unless current_user
+  # end
+  #
   def redirect_path(referrer, normal_redirect)
     referrer || normal_redirect
   end

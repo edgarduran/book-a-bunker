@@ -2,21 +2,20 @@ require "test_helper"
 
 class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
   test "user can create an order" do
-    skip
     user = create(:user)
-    create(:item)
+    create(:bunker)
 
-    visit items_path
-    click_on "Add to Duffel"
-    click_on "Add to Duffel"
-    visit duffel_path
+    visit bunkers_path
+    click_on "Add to Cart"
+    click_on "Add to Cart"
+    visit cart_path
     click_on "Checkout"
 
     assert_equal login_path, current_path
 
     login(user)
 
-    assert_equal duffel_path, current_path
+    assert_equal cart_path, current_path
 
     click_on "Checkout"
 
@@ -30,14 +29,13 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
     assert_equal order.status, "ordered"
   end
 
-  test "unregistered user redirects back to duffel after creating an account" do
-    skip
-    create(:item)
+  test "unregistered user redirects back to cart after creating an account" do
+    create(:bunker)
 
-    visit items_path
-    click_on "Add to Duffel"
-    click_on "Add to Duffel"
-    visit duffel_path
+    visit bunkers_path
+    click_on "Add to Cart"
+    click_on "Add to Cart"
+    visit cart_path
     click_on "Checkout"
 
     assert_equal login_path, current_path
@@ -47,15 +45,11 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
     end
     fill_in "First name", with: "Penney"
     fill_in "Last name", with: "Gadget"
-    fill_in "Address", with: "1510 Blake St"
-    fill_in "City", with: "Denver"
-    fill_in "State", with: "CO"
-    fill_in "Zipcode", with: "80202"
     fill_in "Email", with: "theworldisending@uhoh.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
     click_link_or_button "Submit"
 
-    assert_equal duffel_path, current_path
+    assert_equal cart_path, current_path
   end
 end

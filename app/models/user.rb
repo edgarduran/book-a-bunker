@@ -10,14 +10,8 @@ class User < ActiveRecord::Base
   has_many :user_roles
   has_many :roles, through: :user_roles
 
-  after_validation :geocode
-  geocoded_by :full_street_address
-
-  def full_street_address
-    unless address.nil? || city.nil? || state.nil? || zipcode.nil?
-      address + ", " + city + ", " + state + ", " + zipcode
-    end
-  end
+  # after_validation :geocode
+  # geocoded_by :full_street_address
 
   def self.safe_houses
     where(safe_house: 1)

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   root "home#welcome"
   get "/dashboard", to: "users#show"
-  get "/cart", to: "cart_items#index"
+  get "/cart", to: "cart_bunkers#index"
   get "/rules", to: "resources#rules"
 
   get "/login", to: "sessions#new"

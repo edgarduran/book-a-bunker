@@ -14,12 +14,12 @@ class OrdersController < ApplicationController
   def create
     if current_user
       new_order = Order.new(user_id: current_user.id) do |order|
-        @duffel.contents.each do |item_id, quantity|
-          order.order_items.new(item_id: item_id, quantity: quantity)
+        @cart.contents.each do |bunker_id, quantity|
+          order.order_bunkers.new(bunker_id: bunker_id, quantity: quantity)
         end
       end
       if new_order.save
-        session[:duffel] = nil
+        session[:cart] = nil
         flash[:notice] = "Order was successfully placed."
         redirect_to orders_path
       end
