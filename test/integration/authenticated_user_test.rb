@@ -2,7 +2,8 @@ require "test_helper"
 
 class AuthenticatedUserTest < ActionDispatch::IntegrationTest
   test "guest is prompted to login before checking out" do
-    create(:bunker)
+    create(:location_with_bunker)
+
     visit bunkers_path
     click_link "Add to Cart"
     within ".main-nav" do
@@ -15,7 +16,8 @@ class AuthenticatedUserTest < ActionDispatch::IntegrationTest
 
   test "after login user is redirected to cart they previously started" do
     user = create(:user)
-    bunker = create(:bunker)
+    location = create(:location_with_bunker)
+    bunker = location.bunkers.first
     visit bunkers_path
     click_link "Add to Cart"
     within ".main-nav" do
