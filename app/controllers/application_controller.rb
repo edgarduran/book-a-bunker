@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
                 :current_user,
                 :current_admin?,
                 :unauthenticated_user_error
-  before_action :set_duffel,
+  before_action :set_cart,
                 :authorize!
 
   def all_locations
     Location.all
   end
 
-  def set_duffel
-    @duffel = Duffel.new(session[:duffel])
+  def set_cart
+    @cart = Cart.new(session[:cart])
   end
 
   def current_user
