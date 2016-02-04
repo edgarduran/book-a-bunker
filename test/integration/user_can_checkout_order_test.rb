@@ -30,7 +30,6 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
   end
 
   test "unregistered user redirects back to cart after creating an account" do
-    skip
     create(:bunker)
 
     visit bunkers_path
@@ -46,10 +45,6 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
     end
     fill_in "First name", with: "Penney"
     fill_in "Last name", with: "Gadget"
-    fill_in "Address", with: "1510 Blake St"
-    fill_in "City", with: "Denver"
-    fill_in "State", with: "CO"
-    fill_in "Zipcode", with: "80202"
     fill_in "Email", with: "theworldisending@uhoh.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"

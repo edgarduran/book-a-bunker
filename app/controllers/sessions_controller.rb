@@ -7,14 +7,20 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       if @user.platform_admin?
-        redirect_to bunkers_path
+        path = redirect_path(session[:referrer], bunkers_path)
+        session[:referrer] = nil
+        redirect_to path
         flash[:success] = "Logged in as #{@user.first_name} #{@user.last_name}"
       elsif @user.store_admin?
         # redirect_to "/#{@user.store.slug}/dashboard/#{@user.store_id}"
-        redirect_to bunkers_path
+        path = redirect_path(session[:referrer], bunkers_path)
+        session[:referrer] = nil
+        redirect_to path
         flash[:success] = "Logged in as #{@user.first_name} #{@user.last_name}"
       else
-        redirect_to bunkers_path
+        path = redirect_path(session[:referrer], bunkers_path)
+        session[:referrer] = nil
+        redirect_to path
         flash[:success] = "Logged in as #{@user.first_name} #{@user.last_name}"
       end
     else
