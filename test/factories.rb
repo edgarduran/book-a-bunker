@@ -59,15 +59,21 @@ FactoryGirl.define do
 
   factory :location do
     city
+
+    factory :location_with_bunker do
+      bunkers { create_list(:bunker, 1) }
+    end
+
+    factory :location_with_bunkers do
+      bunkers { create_list(:bunker, 2) }
+    end
   end
 
   sequence :city do |n|
     "City #{n}"
   end
 
-  factory :location_with_bunkers do
-    bunkers { create_list(:bunker, 2) }
-  end
+
 
 
   factory :order do

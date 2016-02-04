@@ -2,7 +2,9 @@ require "test_helper"
 
 class UserCanEditBunkerNightsQuantityInCart < ActionDispatch::IntegrationTest
   test "user can update bunker quantity for cart bunkers" do
-    bunker = create(:bunker)
+    location = create(:location_with_bunker)
+    bunker = location.bunkers.first
+    
     visit bunkers_path
     click_link "Add to Cart"
     visit cart_path
