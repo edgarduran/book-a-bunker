@@ -1,11 +1,4 @@
-FactoryGirl.define do  factory :user_role do
-    user nil
-role nil
-  end
-  factory :role do
-    name "MyString"
-  end
-
+FactoryGirl.define do
 
   factory :bunker do
     title
