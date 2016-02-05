@@ -1,34 +1,16 @@
 <div class="container center">
   <h1>Past Orders</h1>
 </div>
-
-<div class = "row">
+<div class="order-container container">
   <table class="bordered highlight col s6 offset-s3">
     <thead>
       <tr class="duffel-table table-headers">
           <th class="center" data-field="date">Date</th>
           <th class="center" data-field="total">Total</th>
-          <th data-field="button"></th>
       </tr>
     </thead>
-
     <tbody>
-      <% @orders.each do |order| %>
-        <tr class="duffel-table">
-
-          <td class="order-date center">
-            <%= order.formatted_date %>
-          </td>
-
-          <td class="center">
-            <%= order.total %>
-          </td>
-
-          <td class="button center">
-            <%= link_to "View Order", order_path(order), class: "btn black" %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render partial: 'partials/orders_index_table_item', collection: @orders, as: :order %>
     </tbody>
   </table>
 </div>

@@ -1,0 +1,19 @@
+<tr class="duffel-table">
+  <td>
+    <div>
+      <%= link_to bunker.title.capitalize, bunker, class: "order-item-title" %>
+    </div>
+  </td>
+  <td class="order-item-quantity center">
+    <%= @order.bunker_quantity(bunker.id) %>
+  </td>
+  <td class="item-price center">
+    <%= number_to_currency(bunker.price) %>
+  </td>
+  <td class="item-status center">
+    <%= @order.status %>
+  </td>
+  <td class="item-subtotal center">
+    <%= number_to_currency(@order.bunker_subtotal(bunker.id)) %>
+  </td>
+</tr>
