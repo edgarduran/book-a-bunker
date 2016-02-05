@@ -16,12 +16,16 @@
 <body class = "hero-image">
 
   <div class="white-text">
-    <h3>It's Getting Dark....</h3>
-    <!-- <%= link_to "Find Shelter", bunkers_path, class: "enter" %> -->
-    <%= render partial: 'partials/location_dropdown', locals: {locations: @locations} %>
+    <div class="row">
+      <h3>It's Getting Dark....</h3>
+      <h3>Choose the nearest city before it's too late:</h3>
+    </div>
   </div>
-  <div class="container center-align">
-    <img src="assets/US_Map_Whole.jpg" class="locations-map"/>
+  <div class="special">
+    <%= render partial: 'partials/us_map' %>
+  </div>
+  <div class="center homepage-button">
+    <%= link_to "All Available Bunkers", bunkers_path, class: 'btn red'  %>
   </div>
 
   <!--Import jQuery before materialize.js-->

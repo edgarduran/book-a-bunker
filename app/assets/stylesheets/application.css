@@ -352,11 +352,24 @@ a.brand-logo {
     background-color: rgba(219, 211, 202, .6);
 }
 
-.order-item-title, .item-subtotal, .order-subtotal, .item-price, .order-item-quantity {
+.order-item-title, .item-subtotal, .order-subtotal, .item-price, .order-item-quantity, .order-total, .item-status {
   font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.4em;
   color: black;
+}
+
+.order-total {
+  float: right;
+  position: relative;
+  right: 7%;
+}
+
+.order-container {
+  border: 3px;
+  border-width: thick;
+  border-style: ridge;
+  border-color: black;
 }
 
 #status-label {

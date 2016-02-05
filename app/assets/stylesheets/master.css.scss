@@ -67,6 +67,24 @@ a.enter:hover {
   bottom: 0%;
 }
 
+.special {
+  position: relative;
+  left: 22%;
+  top: -3%;
+  table, td, th {
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+  display: table-cell;
+  line-height: 0;
+  font-family: none;
+  font-size: 0px;
+  }
+}
+
+.homepage-button {
+  position: relative;
+  bottom: 2%;
+}
 li {
   font-family: "Rough Typewriter"
 }
