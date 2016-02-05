@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   resources :cart_bunkers, only: [:create, :update]
   resources :stores, only: [:index]
 
+  resources :charges
+
   namespace :admin do
     get "/dashboard", to: "users#index"
     resources :items, only: [:new, :create, :edit, :update, :destroy]
