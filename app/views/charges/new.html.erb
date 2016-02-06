@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount Owed: <%= @amount %></span>
+      <span>Amount Owed: <%= number_to_currency(@amount/100) %></span>
     </label>
   </article>
 
