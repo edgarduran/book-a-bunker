@@ -18,22 +18,35 @@ class ActionDispatch::IntegrationTest
   def teardown
     reset_session!
   end
-end
 
-def login(user)
-  visit login_path
-  fill_in "Email", with: user.email
-  fill_in "Password", with: user.password
-  click_button "Login"
-end
+  def login(user)
+    visit login_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Login"
+  end
 
-# def create_admin
-#   User.create(
-#     first_name: "Admin",
-#     last_name: "Admin",
-#     email: "admin@email.com",
-#     password: "password",
-#     password_confirmation: "password",
-#     role: 1
-#   )
-# end
+  def create_store_admin
+    user = User.create(
+      first_name: "Store",
+      last_name: "Admin",
+      email: "storeadmin@email.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    user.roles.create(name: "store_admin")
+    user.stores.create(name: "Cool Store", description: "Shacks")
+    user
+  end
+
+  # def create_platform_admin
+  #   user = User.create(
+  #     first_name: "Platform",
+  #     last_name: "Admin",
+  #     email: "platformadmin@email.com",
+  #     password: "password",
+  #     password_confirmation: "password"
+  #   )
+  #   user.roles.create(name: "platform_admin")
+  # end
+end
