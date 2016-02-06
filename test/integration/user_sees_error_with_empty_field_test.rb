@@ -3,6 +3,7 @@ require "test_helper"
 class UserSeesErrorWithIncorrectFieldTest < ActionDispatch::IntegrationTest
   test "user does not provide email" do
     skip
+    #this should be moved to a model test
     visit new_user_path
 
     fill_in "First name", with: "Penney"
