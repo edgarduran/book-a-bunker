@@ -26,27 +26,6 @@
 <% end %>
 
   <!-- Dropdown Setups. Duplicates to account for side-nav -->
-  <ul id="resources-dropdown1" class="dropdown-content">
-    <li><%= link_to "Map", map_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Report an Outbreak", report_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "The Rules", rules_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Practice", game_path %></li>
-    <li class="divider"></li>
-  </ul>
-  <ul id="resources-dropdown2" class="dropdown-content">
-    <li><%= link_to "Map", map_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Report an Outbreak", report_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "The Rules", rules_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Practice", game_path %></li>
-    <li class="divider"></li>
-  </ul>
-
   <ul id="location-dropdown1" class="dropdown-content">
     <% all_locations.each do |location| %>
     <li><%= link_to location.city.capitalize, location_path(location.city) %></li>

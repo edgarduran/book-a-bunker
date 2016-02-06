@@ -10,18 +10,10 @@ Rails.application.routes.draw do
   root "home#welcome"
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_bunkers#index"
-  get "/rules", to: "resources#rules"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
-  get "/map", to: "maps#show"
-
-  get "/report", to: "outbreaks#new"
-  post "/report", to: "outbreaks#create"
-
-  get "/game", to: "games#show"
 
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show]
