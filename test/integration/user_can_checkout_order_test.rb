@@ -3,7 +3,7 @@ require "test_helper"
 class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
   test "user can create an order" do
     user = create(:user)
-    locations = create(:location_with_bunker)
+    create(:location_with_bunker)
 
     visit bunkers_path
     click_on "Add to Cart"
