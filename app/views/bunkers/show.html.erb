@@ -1,7 +1,7 @@
 <div id="bunker-show" class="container site-font">
   <div class="row">
-    <div class="col s8 center">
-        <img src=<%= @bunker.image %>>
+    <div class="card-image col s8 center">
+      <%= image_tag(@bunker.image) %>
     </div>
     <div class="col s4">
       <h1><%= @bunker.title %></h1>
@@ -10,7 +10,7 @@
     </div>
     <div class="admin-btns">
       <p><%= render partial: @partial %></p>
-      <% if current_user && current_user.admin? %>
+      <% if store_admin? %>
         <p><%= link_to "Edit Bunker", edit_admin_bunker_path(@bunker), class: "black center-align waves-effect waves-light btn site-font" %></p>
         <p><%= link_to "Delete Bunker", admin_bunker_path(@bunker), method: :delete, class: "black center-align waves-effect waves-light btn site-font" %></p>
       <% end %>
