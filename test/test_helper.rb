@@ -27,16 +27,17 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_store_admin
-    user = User.create(
+    store = Store.create(name: "Cool Store", description: "Shacks")
+    store_admin = User.create(
       first_name: "Store",
       last_name: "Admin",
       email: "storeadmin@email.com",
       password: "password",
       password_confirmation: "password"
     )
-    user.roles.create(name: "store_admin")
-    user.stores.create(name: "Cool Store", description: "Shacks")
-    user
+    store_admin.roles.create(name: "store_admin")
+    store.users << store_admin
+    store_admin
   end
 
   # def create_platform_admin

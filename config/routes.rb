@@ -30,9 +30,7 @@ Rails.application.routes.draw do
 
   namespace :stores, path: ":store", as: :store do
     resources :bunkers, only: [:index, :show], param: :slug
+    resources :dashboard, only: [:show]
   end
-  
-  namespace :store_admin do
-    resources :dashboard, only: [:index, :show]
-  end
+
 end

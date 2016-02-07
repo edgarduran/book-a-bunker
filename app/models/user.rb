@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
 
   has_many :orders
-  has_many :stores
+  belongs_to :store
   has_many :user_roles
   has_many :roles, through: :user_roles
 

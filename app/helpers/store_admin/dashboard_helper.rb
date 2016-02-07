@@ -1,2 +1,0 @@
-module StoreAdmin::DashboardHelper
-end
