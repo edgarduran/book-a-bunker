@@ -5,5 +5,7 @@ class Admin::UsersController < Admin::BaseController
     else
       @orders = Order.all
     end
+    role = Role.find_by(name: "store_admin")
+    @store_admins = role.users
   end
 end

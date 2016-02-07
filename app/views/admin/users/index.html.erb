@@ -1,4 +1,8 @@
-<h1 class="admin-header center">Admin Dashboard</h1>
+<% if current_user.platform_admin? %>
+  <h1 class="admin-header center">Platform Admin Dashboard</h1>
+<% else %>
+  <h1 class="admin-header center">Admin Dashboard</h1>
+<% end %>
 
 <div class="row">
   <div class="center-align col s3 order-status-side-bar">
@@ -68,5 +72,21 @@
         <% end %>
       </tbody>
     </table>
+    <div class="col s9">
+      <h4 class="user-orders-header center site-font">Store Admins</h4>
+        <table>
+          <thead>
+            <tr class="table-headers">
+                <th class="center" data-field="user_first_name">First Name</th>
+                <th class="center" data-field="user_last_name">Last Name</th>
+                <th class="center" data-field="user_email">Email</th>
+                <th class="center" data-field="user_store">Store</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: "partials/store_admins_table_item", collection: @store_admins, as: :store_admin %>
+          </tbody>
+      </table>
+    </div>
   </div>
 </div> <!-- End of row -->

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :user_roles
   has_many :roles, through: :user_roles
-
+  has_one :store
   # after_validation :geocode
   # geocoded_by :full_street_address
 

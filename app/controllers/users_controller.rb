@@ -19,6 +19,9 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    if @user.platform_admin? || @user.store_admin?
+      redirect_to admin_dashboard_path
+    end
   end
 
   def edit
