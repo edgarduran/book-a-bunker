@@ -24,7 +24,9 @@ class PlatformAdminCanViewDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Platform Admin Dashboard")
     assert page.has_content?("Store Admins")
     assert page.has_content?(store_admin.first_name)
-    assert page.has_content?("Store Admin Applications")
+    assert page.has_content?(store_admin.last_name)
+    assert page.has_content?(store_admin.email)
+    assert page.has_content?(store_admin.store.name)
   end
 
 end
