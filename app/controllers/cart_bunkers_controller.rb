@@ -1,5 +1,6 @@
 class CartBunkersController < ApplicationController
   def create
+    binding.pry
     bunker = Bunker.find(params[:bunker_id])
     @cart.add_bunker(bunker.id)
     session[:cart] = @cart.contents
