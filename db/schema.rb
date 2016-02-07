@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207171600) do
+ActiveRecord::Schema.define(version: 20160207184801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,7 +116,10 @@ ActiveRecord::Schema.define(version: 20160207171600) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "safe_house",      default: 0
+    t.integer  "store_id"
   end
+
+  add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
 
   add_foreign_key "bunkers", "locations"
   add_foreign_key "bunkers", "stores"
@@ -128,4 +131,5 @@ ActiveRecord::Schema.define(version: 20160207171600) do
   add_foreign_key "stores", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "stores"
 end
