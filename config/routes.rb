@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :create, :show]
 
   resources :bunkers, only: [:index, :show]
-  resources :locations, only: [:show, :index]
+  resources :locations, only: [:show, :index], param: :slug
   resources :cart_bunkers, only: [:create, :update]
   resources :stores, only: [:index]
 
