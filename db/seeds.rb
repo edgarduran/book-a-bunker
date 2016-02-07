@@ -60,4 +60,3 @@ class Seed
 end
 
 Seed.start
-binding.pry
