@@ -19,7 +19,7 @@
       <tr class="order-bunker-table">
         <td>
           <div class="order-image center">
-            <img src=<%= bunker.image %>>
+            <%= image_tag(bunker.image) %>
           </div>
         </td>
 
@@ -66,5 +66,5 @@
 </table>
 
 <div class="checkout">
-  <%= link_to "Checkout", orders_path, method: :post, class:"btn black site-font" %>
+  <%= link_to "Checkout", @path, class:"btn black site-font" %>
 </div>

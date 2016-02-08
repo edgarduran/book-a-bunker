@@ -11,6 +11,8 @@ class UsersController < ApplicationController
       path = redirect_path(session[:referrer], dashboard_path)
       session[:referrer] = nil
       redirect_to path
+      registered_user_role = Role.find_by(name: "registered_user")
+      @user.roles << registered_user_role
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")
       render :new
@@ -19,6 +21,9 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    if @user.platform_admin? || @user.store_admin?
+      redirect_to admin_dashboard_path
+    end
   end
 
   def edit
