@@ -5,10 +5,11 @@ class Cart
     @contents = contents || {}
   end
 
-  def add_bunker(bunker_id)
+  def add_bunker(bunker_id, days)
     contents[bunker_id.to_s] ||= 0
-    contents[bunker_id.to_s] += 1
+    contents[bunker_id.to_s] = days
   end
+
 
   def total
     contents.values.sum

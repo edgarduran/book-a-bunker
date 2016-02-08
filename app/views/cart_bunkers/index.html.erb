@@ -7,7 +7,7 @@
     <tr class="cart-table table-headers">
         <th class="bunker-header" data-field="image">Bunker</th>
         <th data-field="bunker"></th>
-        <th class="center" data-field="quantity">Quantity</th>
+        <th class="center" data-field="quantity">Nights</th>
         <th class="center" data-field="price">Price</th>
         <th class="center" data-field="total">Total</th>
         <th class="right" data-field="remove"></th>
@@ -31,13 +31,7 @@
         </td>
 
         <td class="center order-bunker-quantity">
-          <%= link_to cart_bunker_path(bunker.id, function: "subtract"), method: :patch do %>
-            <i class="minus-icon material-icons md-18 quantity-button">remove_circle_outline</i>
-          <% end %>
             <span class="bunker-count"><%= @cart.count_of(bunker.id) %></span>
-          <%= link_to cart_bunker_path(bunker.id, function: "add"), method: :patch do %>
-            <i class="md-18 material-icons quantity-button">add_circle_outline</i>
-          <% end %>
         </td>
 
         <td class="bunker-price center"><%= number_to_currency(bunker.price) %></td>
