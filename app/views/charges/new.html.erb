@@ -5,14 +5,18 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
+    <div class="center site-font">
     <label class="amount">
-      <span>Amount Owed: <%= number_to_currency(@amount/100) %></span>
+      <span id="stripe">Amount Owed: <%= number_to_currency(@amount/100) %></span>
     </label>
+  </div>
   </article>
-
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Bunker Payment"
-          data-amount=<%= @amount %>
-          data-locale="auto"></script>
-<% end %>
+  <br>
+  <div class="center">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Bunker Payment"
+            data-amount=<%= @amount %>
+            data-locale="auto"></script>
+  <% end %>
+</div>

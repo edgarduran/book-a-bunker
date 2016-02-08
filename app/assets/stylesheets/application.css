@@ -461,3 +461,16 @@ html, body { height: 100%; margin: 0; padding: 0; }
   width    : 1280px;
   height   : 1200px;
  }
+
+ /* Stripe */
+
+ #stripe {
+   font-size: 3em;
+   color: black;
+ }
+
+ button.stripe-button-el span {
+    color: black !important;
+    font-family: "Rough Typewriter" !important;
+    font-size: 1.5em !important;
+}
