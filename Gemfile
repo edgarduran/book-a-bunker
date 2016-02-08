@@ -19,6 +19,8 @@ gem 'faker'
 gem 'will_paginate', '3.0.7'
 gem 'will_paginate-materialize'
 gem 'pickadate-rails'
+gem 'selenium-webdriver'
+gem 'chromedriver-helper'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

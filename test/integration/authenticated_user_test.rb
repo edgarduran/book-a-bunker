@@ -4,7 +4,15 @@ class AuthenticatedUserTest < ActionDispatch::IntegrationTest
   test "guest is prompted to login before checking out" do
     create(:location_with_bunker)
 
-    visit bunkers_path
+    Capybara.register_driver :selenium do |app|
+      driver = Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+    binding.pry
+    driver.navigate.to bunkers_path
+    element = driver.find_element(:name, 'q')
+    element.send_keys "Hello WebDriver!"
+    element.submit
+
     click_link "Add to Cart"
     within ".main-nav" do
       click_on "My Cart"

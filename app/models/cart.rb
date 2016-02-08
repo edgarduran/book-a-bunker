@@ -40,17 +40,7 @@ class Cart
     bunker_totals.sum
   end
 
-  def update_quantity(function, bunker_id)
-    case function
-    when "add"
-      contents[bunker_id] += 1
-    when "subtract"
-      contents[bunker_id] -= 1
-      if contents[bunker_id] <= 0
-        self.contents = contents.except(bunker_id)
-      end
-    when "remove"
-      self.contents = contents.except(bunker_id)
-    end
+  def update_quantity
+
   end
 end
