@@ -2,6 +2,7 @@ class Seed
   def self.start
     seed = Seed.new
     # seed.generate_bunkers
+    seed.generate_users
     seed.generate_locations
     seed.generate_stores
     seed.generate_roles
@@ -57,12 +58,15 @@ class Seed
     end
   end
 
-  # def generate_users
-  #   5.times do |i|
-  #     User.create(name: Faker::Name.name, email: Faker::Internet.email)
-  #     puts "Created user number #{i}"
-  #   end
-  # end
+  def generate_users
+    5.times do |i|
+      User.create(first_name: Faker::Name.name,
+                  last_name: Faker::Name.name,
+                  email: Faker::Internet.email, 
+                  password: "password")
+      puts "Created user number #{i}"
+    end
+  end
 
 end
 

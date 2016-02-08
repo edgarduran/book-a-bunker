@@ -25,18 +25,29 @@ class ActionDispatch::IntegrationTest
     fill_in "Password", with: user.password
     click_button "Login"
   end
-  
+
+  def create_store_admin
+    store = Store.create(name: "Cool Store", description: "Shacks")
+    store_admin = User.create(
+      first_name: "Store",
+      last_name: "Admin",
+      email: "storeadmin@email.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    store_admin.roles.create(name: "store_admin")
+    store.users << store_admin
+    store_admin
+  end
+
+  # def create_platform_admin
+  #   user = User.create(
+  #     first_name: "Platform",
+  #     last_name: "Admin",
+  #     email: "platformadmin@email.com",
+  #     password: "password",
+  #     password_confirmation: "password"
+  #   )
+  #   user.roles.create(name: "platform_admin")
+  # end
 end
-
-
-
-# def create_admin
-#   User.create(
-#     first_name: "Admin",
-#     last_name: "Admin",
-#     email: "admin@email.com",
-#     password: "password",
-#     password_confirmation: "password",
-#     role: 1
-#   )
-# end

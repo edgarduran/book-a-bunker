@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160207184801) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,14 +88,12 @@ ActiveRecord::Schema.define(version: 20160207184801) do
     t.string   "name"
     t.string   "slug"
     t.string   "description"
-    t.integer  "user_id"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "stores", ["location_id"], name: "index_stores_on_location_id", using: :btree
-  add_index "stores", ["user_id"], name: "index_stores_on_user_id", using: :btree
 
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id"
@@ -128,7 +127,6 @@ ActiveRecord::Schema.define(version: 20160207184801) do
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "bunkers", column: "item_id"
   add_foreign_key "stores", "locations"
-  add_foreign_key "stores", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "users", "stores"
