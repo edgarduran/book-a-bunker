@@ -18,7 +18,43 @@
   </ul>
 </div>
 <br><br><br>
-<h3>Orders</h3>
-<% if @store.orders == nil %>
+<% if @store.orders == [] %>
+  <h3 class="user-orders-header center site-font">Orders</h3>>
   <h4>No orders to show at this time</h4>
+<% else %>
+  <div class="col s9">
+    <h4 class="user-orders-header center site-font">Orders</h4>
+    <table id="user-orders" class="site-font order-table bordered highlight">
+      <thead>
+        <tr class="order-table table-headers">
+          <th class="center" data-field="first_name">Name</th>
+          <th class="center" data-field="date">Date</th>
+          <th class="center" data-field="total">Total</th>
+          <th class="center" data-field="status">Status</th>
+          <th data-field="button"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @store.orders.each do |order| %>
+        <tr class="order-table" data-status="<%= order.status %>">
+          <td class="order-name center">
+            <%= order.user.first_name %> <%= order.user.last_name %>
+          </td>
+          <td class="center">
+            <%= order.formatted_date %>
+          </td>
+          <td class="center">
+            <%= order.total %>
+          </td>
+          <td class="center statuss">
+            <%= order.status %>
+          </td>
+          <td class="button center">
+            <%= link_to "View Order", order_path(order), class: "btn black" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
