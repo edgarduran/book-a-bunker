@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  namespace :stores do
-  get 'bunkers/index'
-  end
-
-  namespace :stores do
-  get 'bunkers/show'
-  end
-
   root "home#welcome"
   get "/dashboard", to: "users#show"
   get "/cart", to: "cart_bunkers#index"
@@ -31,8 +23,8 @@ Rails.application.routes.draw do
   end
 
   namespace :stores, path: ":store", as: :store do
-    resources :bunkers, only: [:index, :show], param: :slug
-    resources :dashboard, only: [:show]
+    resources :bunkers, param: :slug
+    get "/dashboard", to: "dashboard#index"
   end
 
 end

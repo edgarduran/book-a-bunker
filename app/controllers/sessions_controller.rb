@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         redirect_to path
         flash[:success] = "Logged in as #{@user.first_name} #{@user.last_name}"
       elsif @user.store_admin?
-        path = redirect_path(session[:referrer], "/#{@user.store.slug}/dashboard/#{@user.store.id}")
+        path = redirect_path(session[:referrer], "/#{@user.store.slug}/dashboard")
         session[:referrer] = nil
         redirect_to path
         flash[:success] = "Logged in as #{@user.first_name} #{@user.last_name}"

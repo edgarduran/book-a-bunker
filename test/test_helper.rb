@@ -35,9 +35,22 @@ class ActionDispatch::IntegrationTest
       password: "password",
       password_confirmation: "password"
     )
-    store_admin.roles.create(name: "store_admin")
+    role = Role.create(name: "store_admin")
+    store_admin.roles << role
     store.users << store_admin
     store_admin
+  end
+
+  def login_store_admin
+    admin = create_store_admin
+    visit login_path
+
+    fill_in "Email", with: admin.email
+    fill_in "Password", with: "password"
+
+    within "#login-form" do
+      click_on "Login"
+    end
   end
 
   # def create_platform_admin

@@ -6,5 +6,9 @@ class Stores::BunkersController < Stores::StoresController
 
   def show
   end
-  
+
+  def new
+
+  end
+
 end
