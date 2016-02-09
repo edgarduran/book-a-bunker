@@ -76,4 +76,6 @@ FactoryGirl.define do
   factory :order do
     bunkers { create_list(:bunker, 2) }
   end
+
+
 end
