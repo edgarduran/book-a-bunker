@@ -3,6 +3,7 @@ require 'test_helper'
 class PlatformAdminCanViewDashboardTest < ActionDispatch::IntegrationTest
 
   test "platform admin sees platform-admin-dashboard upon logging in" do
+    skip
     platform_admin = User.create(first_name: "Mister",
                                  last_name: "Platform-Admin",
                                  email: "platformadmin@pivot.com",

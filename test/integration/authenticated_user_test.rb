@@ -41,6 +41,8 @@ class AuthenticatedUserTest < ActionDispatch::IntegrationTest
 
   test "user can log out and is redirected to root page" do
     user = create(:user)
+    role = Role.create(name: "registered_user")
+    user.roles << role
     login(user)
 
     assert_equal dashboard_path, current_path

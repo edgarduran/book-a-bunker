@@ -1,6 +1,6 @@
 class Store < ActiveRecord::Base
-  has_many :users
   belongs_to :location
+  has_many :users
   has_many :bunkers
   has_many :orders
   before_save :generate_slug

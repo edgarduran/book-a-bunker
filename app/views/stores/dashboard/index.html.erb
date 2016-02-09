@@ -1,8 +1,9 @@
 <div class="dashboard-header">
   <h1 class="center"><%= @store.name.titleize %></h1>
   <div class="edit-profile-button center">
-    <%= link_to "Edit Store Info", edit_user_path(current_user), class:"btn black" %>
-    <%= link_to "View Store's Orders", edit_user_path(current_user), class:"btn black" %>
+    <%= link_to "Edit Store Info", "#", class:"btn black" %>
+    <%= link_to "View Store's Orders", "#", class:"btn black" %>
+    <%= link_to "Add New Bunker", {controller: 'stores/bunkers', action: 'new', store_slug: @store.slug}, class:"btn black" %>
   </div>
 </div><br><br>
 

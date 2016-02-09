@@ -4,5 +4,10 @@
 <ul>
   <% @bunkers.each do |bunker| %>
     <li><%= bunker.title %></li>
+    <li><%= bunker.description %></li>
+    <% if store_admin? %>
+      <li><%= link_to "Delete Bunker", store_bunker_path(current_store.slug, bunker), method: :delete, class:"btn black" %></li>
+      <li><%= link_to "Edit Bunker", edit_store_bunker_path(current_store.slug, bunker), class:"btn black" %></li>
+    <% end %>
   <% end %>
 </ul>
