@@ -36,7 +36,7 @@ class StoreAdminViewsDashboardTest < ActionDispatch::IntegrationTest
     customer = create(:user)
     user_role = Role.create(name: "registered_user")
     store = create(:store)
-    order = create(:order)
+    order = create(:order, status: "paid")
     user = create(:user)
     admin_role = Role.create(name: "store_admin")
     customer.roles << user_role
@@ -54,6 +54,7 @@ class StoreAdminViewsDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content? order.formatted_date
     assert page.has_content? order.status
     assert_equal 1, store.orders.count
+    save_and_open_page
   end
 
 

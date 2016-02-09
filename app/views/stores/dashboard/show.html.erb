@@ -24,6 +24,10 @@
 <% else %>
   <div class="col s9">
     <h4 class="user-orders-header center site-font">Orders</h4>
+    <div class="filter">
+	    <h4>Filter By Status:</h4>
+	    <%= select :order, :filter_status, @statuses, {include_blank: true} %>
+    </div>
     <table id="user-orders" class="site-font order-table bordered highlight">
       <thead>
         <tr class="order-table table-headers">
@@ -31,12 +35,13 @@
           <th class="center" data-field="date">Date</th>
           <th class="center" data-field="total">Total</th>
           <th class="center" data-field="status">Status</th>
+          <th class="center" data-field="action">Action</th>
           <th data-field="button"></th>
         </tr>
       </thead>
       <tbody>
         <% @store.orders.each do |order| %>
-        <tr class="order-table" data-status="<%= order.status %>">
+        <tr class="order-table" id="<%= order.id.to_s %>"  data-status="<%= order.status %>">
           <td class="order-name center">
             <%= order.user.first_name %> <%= order.user.last_name %>
           </td>
@@ -48,6 +53,11 @@
           </td>
           <td class="center statuss">
             <%= order.status %>
+          </td>
+          <td>
+            <%= link_to "Cancel", order_path(order, status: "cancelled"), method: :patch if order.status == "paid" || order.status == "ordered" %>
+            <%= link_to "Mark as paid", order_path(order, status: "paid"), method: :patch if order.status == "ordered" %>
+            <%= link_to "Mark as completed", order_path(order, status: "completed"), method: :patch if order.status == "paid" %>
           </td>
           <td class="button center">
             <%= link_to "View Order", order_path(order), class: "btn black" %>
