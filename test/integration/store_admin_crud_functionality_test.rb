@@ -22,11 +22,25 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     assert page.has_content? "So trendy and awesome"
   end
 
-  test "admin sees an error and is kept on form page with incorrect info" do
+  test "admin sees an error with incorrect info" do
   end
 
   test "admin can update an existing bunker" do
-    skip
+    login_store_admin_with_store
+
+    click_on "Edit Bunker"
+
+    fill_in "Bunker Name", with: "Skyscraper Bunker"
+    fill_in "Price", with: 500
+    fill_in "Bathrooms", with: 20
+    click_on "Update Bunker"
+
+    assert page.has_content? "Bunker Updated!"
+    assert_equal store_bunker_path(Store.last.slug, Bunker.last), current_path
+
+    assert page.has_content? "Skyscraper Bunker"
+    assert page.has_content? 500
+    assert page.has_content? 20
   end
 
   test "admin can delete a bunker" do
@@ -36,6 +50,7 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
 
     click_on "Delete Bunker"
 
+    assert page.has_content? "Bunker has been Deleted!"
     refute page.has_content? "Artist Loft Bunker"
     refute page.has_content? "So trendy and awesome"
     assert_equal store_bunkers_path(Store.last.slug), current_path

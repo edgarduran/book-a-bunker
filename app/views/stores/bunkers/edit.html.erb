@@ -1,5 +1,5 @@
 <div class="bunker-form">
-  <%= form_for(@bunker, url: store_bunkers_path(@store.slug)) do |f| %>
+  <%= form_for(@bunker, url: store_bunker_path(@store.slug, @bunker)) do |f| %>
 
   <%= f.label :title, "Bunker Name", class: "form-text" %>
   <%= f.text_field :title %>
@@ -19,7 +19,7 @@
   <%= f.label :bathrooms, class: "form-text" %>
   <%= f.text_field :bathrooms %>
 
-  <%= f.submit "Create New Bunker", class:"submit-btn" %>
+  <%= f.submit "Update Bunker", class:"submit-btn" %>
 
   <% end %>
 </div>

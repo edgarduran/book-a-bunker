@@ -1,0 +1,21 @@
+<div id="bunker-show" class="container site-font">
+  <div class="row">
+    <div class="card-image col s8 center">
+      <%= image_tag(@bunker.image) %>
+    </div>
+    <div class="col s4">
+      <h1><%= @bunker.title %></h1>
+      <p><%= @bunker.description %></p>
+      <p><%= number_to_currency(@bunker.price) %></p>
+      <p><%= @bunker.image %></p>
+      <p><%= @bunker.bedrooms %></p>
+      <p><%= @bunker.bathrooms %></p>
+    </div>
+    <div class="admin-btns">
+      <% if store_admin? %>
+        <p><%= link_to "Edit Bunker", edit_store_bunker_path(@bunker.store.slug, @bunker), class: "btn black site-font" %></p>
+        <p><%= link_to "Delete Bunker", store_bunker_path(@bunker.store.slug, @bunker), method: :delete, class: "btn black site-font" %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

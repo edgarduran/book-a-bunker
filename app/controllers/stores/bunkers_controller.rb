@@ -5,6 +5,7 @@ class Stores::BunkersController < Stores::StoresController
   end
 
   def show
+    @bunker = Bunker.find(params[:slug])
   end
 
   def new
@@ -24,9 +25,21 @@ class Stores::BunkersController < Stores::StoresController
     end
   end
 
+  def edit
+    @bunker = Bunker.find(params[:slug])
+    @store = current_store
+  end
+
+  def update
+    @bunker = Bunker.find(params[:slug])
+    @bunker.update_attributes(bunker_params)
+    flash[:notice] = "Bunker Updated!"
+    redirect_to store_bunker_path(current_store.slug, @bunker)
+  end
+
   def destroy
     Bunker.find_by(params[:id]).destroy
-    flash[:notice] = "Bunker has been deleted!"
+    flash[:notice] = "Bunker has been Deleted!"
     redirect_to store_bunkers_path(current_store.slug)
   end
 
