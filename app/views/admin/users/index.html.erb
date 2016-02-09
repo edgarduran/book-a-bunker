@@ -83,15 +83,40 @@
 </div>
 <div class="col s9">
   <h4 class="user-orders-header center site-font">Store Applications</h4>
-  <table class="site-font order-table bordered highlight">
+  <table class="site-font center bordered highlight">
     <thead>
       <tr class="table-headers">
-        <th class="center" data-field="first_name">Name</th>
-        <th class="center" data-field="date">Date</th>
-        <th class="center" data-field="total">Total</th>
-        <th class="center" data-field="status">Status</th>
-        <th data-field="button"></th>
+        <th class="center" data-field="store_name">Store Name</th>
+        <th class="center" data-field="store_description">Store Description</th>
+        <th class="center" data-field="store_status">Status</th>
+        <th class="center" data-field="store_user_first_name">User's First Name</th>
+        <th class="center" data-field="store_user_last_name">User's Last Name</th>
+        <th class="center" data-field="store_action">Action</th>
       </tr>
     </thead>
-
+    <tbody>
+      <% if @store_application %>
+        <tr class="duffel-table">
+          <td class="center">
+            <%= @store_application.name %>
+          </td>
+          <td class="center">
+            <%= @store_application.description %>
+          </td>
+          <td class="center">
+            <%= @store_application.approved? %>
+          </td>
+          <td class="center">
+            <%= @store_application.users.first.first_name %>
+          </td>
+          <td class="center">
+            <%= @store_application.users.first.last_name %>
+          </td>
+          <td class="center">
+            <%= link_to "Approve", store_path(@store_application), method: :patch %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div> <!-- End of row -->
