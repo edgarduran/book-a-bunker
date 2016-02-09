@@ -38,6 +38,7 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
 
     refute page.has_content? "Artist Loft Bunker"
     refute page.has_content? "So trendy and awesome"
+    assert_equal store_bunkers_path(Store.last.slug), current_path
   end
 
 end

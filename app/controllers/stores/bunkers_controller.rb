@@ -24,9 +24,11 @@ class Stores::BunkersController < Stores::StoresController
     end
   end
 
-  # def destroy
-  #   @bunker = Bunker.find_by(params:)
-  # end
+  def destroy
+    Bunker.find_by(params[:id]).destroy
+    flash[:notice] = "Bunker has been deleted!"
+    redirect_to store_bunkers_path(current_store.slug)
+  end
 
   private
 
