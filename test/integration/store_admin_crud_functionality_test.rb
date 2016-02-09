@@ -1,7 +1,6 @@
 class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
 
   test "admin can create a new bunker" do
-    default_image = "https://upload.wikimedia.org/wikipedia/commons/0/01/Albania_bunker_2.jpg"
     admin = create_store_admin
     login(admin)
 
@@ -13,7 +12,6 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     fill_in "Bunker Name", with: "Artist Loft Bunker"
     fill_in "Description", with: "So trendy and awesome"
     fill_in "Price", with: 100
-    fill_in "Image", with: default_image
     fill_in "Bedrooms", with: 2
     fill_in "Bathrooms", with: 1
     click_on "Create New Bunker"
@@ -32,7 +30,14 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can delete a bunker" do
-    skip
+    login_store_admin_with_store
+    assert page.has_content? "Artist Loft Bunker"
+    assert page.has_content? "So trendy and awesome"
+
+    click_on "Delete Bunker"
+
+    refute page.has_content? "Artist Loft Bunker"
+    refute page.has_content? "So trendy and awesome"
   end
 
 end

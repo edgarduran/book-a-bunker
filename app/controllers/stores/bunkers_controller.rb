@@ -13,7 +13,7 @@ class Stores::BunkersController < Stores::StoresController
   end
 
   def create
-    @bunker = Bunker.create(bunker_params)
+    @bunker = Bunker.new(bunker_params)
     if @bunker.save
       current_store.bunkers << @bunker
       flash[:notice] = "New Bunker Created!"
@@ -23,6 +23,10 @@ class Stores::BunkersController < Stores::StoresController
       render :new
     end
   end
+
+  # def destroy
+  #   @bunker = Bunker.find_by(params:)
+  # end
 
   private
 

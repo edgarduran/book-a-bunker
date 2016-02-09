@@ -5,5 +5,8 @@
   <% @bunkers.each do |bunker| %>
     <li><%= bunker.title %></li>
     <li><%= bunker.description %></li>
+    <% if store_admin? %>
+      <li><%= link_to "Delete Bunker", store_bunker_path(current_store.slug, bunker), method: :delete %></li>
+    <% end %>
   <% end %>
 </ul>

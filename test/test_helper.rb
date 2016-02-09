@@ -53,6 +53,19 @@ class ActionDispatch::IntegrationTest
     end
   end
 
+  def login_store_admin_with_store
+    admin = create_store_admin
+    login(admin)
+    visit store_dashboard_path(admin.store)
+    click_on "Add New Bunker"
+    fill_in "Bunker Name", with: "Artist Loft Bunker"
+    fill_in "Description", with: "So trendy and awesome"
+    fill_in "Price", with: 100
+    fill_in "Bedrooms", with: 2
+    fill_in "Bathrooms", with: 1
+    click_on "Create New Bunker"
+  end
+
   # def create_platform_admin
   #   user = User.create(
   #     first_name: "Platform",
