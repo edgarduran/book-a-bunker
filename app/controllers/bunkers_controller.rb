@@ -1,6 +1,6 @@
 class BunkersController < ApplicationController
   def index
-    @bunkers = Bunker.all
+    @bunkers = Bunker.paginate(page: params[:page], :per_page => 25)
   end
 
   def show

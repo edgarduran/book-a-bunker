@@ -1,0 +1,11 @@
+<h1>Store Application</h1>
+
+<%= form_for(@store) do |f| %>
+  <%= f.label :name, "Store Name" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description, "Store Description" %>
+  <%= f.text_field :description %>
+
+  <%= f.submit "Apply For Store" %>
+<% end %>

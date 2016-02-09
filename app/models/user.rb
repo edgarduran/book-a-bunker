@@ -4,18 +4,12 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
-  scope :safe_houses, -> { where(safe_house: true) }
 
   has_many :orders
+  belongs_to :store
   has_many :user_roles
   has_many :roles, through: :user_roles
 
-  # after_validation :geocode
-  # geocoded_by :full_street_address
-
-  def self.safe_houses
-    where(safe_house: 1)
-  end
 
   def platform_admin?
     roles.exists?(name: "platform_admin")

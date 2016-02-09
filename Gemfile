@@ -17,6 +17,8 @@ gem 'geocoder'
 gem 'figaro', ">= 1.0.0"
 gem 'stripe'
 gem 'faker'
+gem 'will_paginate', '3.0.7'
+gem 'will_paginate-materialize'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

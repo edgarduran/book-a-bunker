@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
     if current_user
-      @orders = current_user.orders
+      @orders = current_user.orders.reverse
     else
       unauthenticated_user_error
     end

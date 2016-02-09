@@ -26,27 +26,6 @@
 <% end %>
 
   <!-- Dropdown Setups. Duplicates to account for side-nav -->
-  <ul id="resources-dropdown1" class="dropdown-content">
-    <li><%= link_to "Map", map_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Report an Outbreak", report_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "The Rules", rules_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Practice", game_path %></li>
-    <li class="divider"></li>
-  </ul>
-  <ul id="resources-dropdown2" class="dropdown-content">
-    <li><%= link_to "Map", map_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Report an Outbreak", report_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "The Rules", rules_path %></li>
-    <li class="divider"></li>
-    <li><%= link_to "Practice", game_path %></li>
-    <li class="divider"></li>
-  </ul>
-
   <ul id="location-dropdown1" class="dropdown-content">
     <% all_locations.each do |location| %>
     <li><%= link_to location.city.capitalize, location_path(location.city) %></li>
@@ -94,7 +73,6 @@
           <li><%= link_to "Login", login_path %></li>
           <li><%= link_to "Create Account", new_user_path %></li>
         <% end %>
-        <li><a class="dropdown-button" href="#!" data-activates="resources-dropdown1" data-beloworigin="true">Resources<i class="material-icons right">arrow_drop_down</i></a></li>
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-button" href="#!" data-activates="location-dropdown1" data-beloworigin="true">Locations<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><%= link_to "My Cart", cart_path %></li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204170548) do
+ActiveRecord::Schema.define(version: 20160209021846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160204170548) do
     t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "order_bunkers", force: :cascade do |t|
@@ -55,8 +56,10 @@ ActiveRecord::Schema.define(version: 20160204170548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "status"
+    t.integer  "store_id"
   end
 
+  add_index "orders", ["store_id"], name: "index_orders_on_store_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "outbreaks", force: :cascade do |t|
@@ -86,14 +89,13 @@ ActiveRecord::Schema.define(version: 20160204170548) do
     t.string   "name"
     t.string   "slug"
     t.string   "description"
-    t.integer  "user_id"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "approved"
   end
 
   add_index "stores", ["location_id"], name: "index_stores_on_location_id", using: :btree
-  add_index "stores", ["user_id"], name: "index_stores_on_user_id", using: :btree
 
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id"
@@ -115,16 +117,20 @@ ActiveRecord::Schema.define(version: 20160204170548) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "safe_house",      default: 0
+    t.integer  "store_id"
   end
+
+  add_index "users", ["store_id"], name: "index_users_on_store_id", using: :btree
 
   add_foreign_key "bunkers", "locations"
   add_foreign_key "bunkers", "stores"
   add_foreign_key "order_bunkers", "bunkers"
   add_foreign_key "order_bunkers", "orders"
+  add_foreign_key "orders", "stores"
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "bunkers", column: "item_id"
   add_foreign_key "stores", "locations"
-  add_foreign_key "stores", "users"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "stores"
 end

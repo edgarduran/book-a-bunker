@@ -1,0 +1,71 @@
+<div class="dashboard-header">
+  <h1 class="center"><%= @store.name.titleize %></h1>
+  <div class="edit-profile-button center">
+    <%= link_to "Edit Store Info", "#", class:"btn black" %>
+    <%= link_to "View Store's Orders", "#", class:"btn black" %>
+    <%= link_to "Add New Bunker", {controller: 'stores/bunkers', action: 'new', store_slug: @store.slug}, class:"btn black" %>
+  </div>
+</div><br><br>
+
+<div class="container user-card center">
+  <ul class="user-info">
+    <h3 class="center">Logged in as:</h3>
+    <li class="user-name"> <%= current_user.first_name %> <%= current_user.last_name %></li><br>
+    <li class="user-email"><%= current_user.email %></li><br>
+
+    <div class="edit-profile-button">
+      <li><%= link_to "Edit Personal Profile", edit_user_path(current_user), class:"btn black" %></li><br>
+    </div>
+  </ul>
+</div>
+<br><br><br>
+<% if @store.orders == [] %>
+  <h3 class="user-orders-header center site-font">Orders</h3>>
+  <h4>No orders to show at this time</h4>
+<% else %>
+  <div class="col s9">
+    <h4 class="user-orders-header center site-font">Orders</h4>
+    <div class="filter">
+	    <h4>Filter By Status:</h4>
+	    <%= select :order, :filter_status, @statuses, {include_blank: true} %>
+    </div>
+    <table id="user-orders" class="site-font order-table bordered highlight">
+      <thead>
+        <tr class="order-table table-headers">
+          <th class="center" data-field="first_name">Name</th>
+          <th class="center" data-field="date">Date</th>
+          <th class="center" data-field="total">Total</th>
+          <th class="center" data-field="status">Status</th>
+          <th class="center" data-field="action">Action</th>
+          <th data-field="button"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @store.orders.each do |order| %>
+        <tr class="order-table" id="<%= order.id.to_s %>"  data-status="<%= order.status %>">
+          <td class="order-name center">
+            <%= order.user.first_name %> <%= order.user.last_name %>
+          </td>
+          <td class="center">
+            <%= order.formatted_date %>
+          </td>
+          <td class="center">
+            <%= order.total %>
+          </td>
+          <td class="center statuss">
+            <%= order.status %>
+          </td>
+          <td>
+            <%= link_to "Cancel", order_path(order, status: "cancelled"), method: :patch if order.status == "paid" || order.status == "ordered" %>
+            <%= link_to "Mark as paid", order_path(order, status: "paid"), method: :patch if order.status == "ordered" %>
+            <%= link_to "Mark as completed", order_path(order, status: "completed"), method: :patch if order.status == "paid" %>
+          </td>
+          <td class="button center">
+            <%= link_to "View Order", order_path(order), class: "btn black" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

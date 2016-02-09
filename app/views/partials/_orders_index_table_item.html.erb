@@ -1,0 +1,11 @@
+<tr class="duffel-table">
+  <td class="order-date center">
+    <%= order.formatted_date %>
+  </td>
+  <td class="order-total center">
+    <%= number_to_currency(order.total) %>
+  </td>
+  <td class="button center">
+    <%= link_to "View Order", order_path(order), class: "btn black" %>
+  </td>
+</tr>

@@ -12,14 +12,21 @@ class GuestCanViewLocationsTest < ActionDispatch::IntegrationTest
   end
 
   test 'guest can view bunkers by location' do
-    location = create(:location)
-    bunker   = create(:bunker)
-    location.bunkers << bunker
-    visit location_path(location)
+    location = create(:location_with_bunker)
+    visit location_path(location.slug)
 
-    assert_equal location_path(location), current_path
+    assert_equal location_path(location.slug), current_path
     assert_equal 1, Bunker.count
-    assert page.has_content? bunker.title
+    assert page.has_content? location.bunkers.first.title
     assert page.has_content? location.city
+  end
+
+  test 'guest can view bunkers index map on homepage and follow a link to location show page' do
+    location = create(:location, city: "Augusta")
+
+    visit root_path
+
+    click_link('augusta_link')
+    assert_equal location_path(location.slug), current_path
   end
 end

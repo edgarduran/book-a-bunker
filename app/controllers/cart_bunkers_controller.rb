@@ -4,11 +4,14 @@ class CartBunkersController < ApplicationController
     @cart.add_bunker(bunker.id)
     session[:cart] = @cart.contents
     flash[:notice] = "#{bunker.title} has been added to cart for booking"
-    redirect_to URI(request.referer).path
+    redirect_to URI(request.referrer).path
   end
 
   def index
     @bunkers = @cart.cart_bunkers
+    @path = login_path
+    @path = new_charge_path if current_user.registered_user?
+    session[:referrer] = cart_path
   end
 
   def update

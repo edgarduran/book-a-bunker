@@ -1,26 +1,28 @@
-<div class="row">
-  <h1 class="center-align index-h1">Available Bunkers</h1>
-  <div class="bunkers-container site-font">
-    <% target.each do |bunker| %>
-    <center><div class="card">
-      <div class="card-image col s3" >
-        <img class="activator" src=<%= bunker.image %>>
-      </div>
-      <br>
-      <div class="row">
-        <div class="bunker-description col s6">
-          <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>
-          <p>Location: <%= bunker.location.city %></p>
-          <p><%= bunker.description %></p>
+<%= will_paginate %>
+  <div class="row">
+    <h1 class="center-align index-h1">Available Bunkers</h1>
+    <div class="bunkers-container site-font">
+      <% target.each do |bunker| %>
+      <center><div class="card">
+        <div class="card-image col s3">
+          <%= image_tag(bunker.image) %>
         </div>
-        <br><br>
-        <span class="activator grey-text text-darken-4 card-price"><%= number_to_currency(bunker.price) %></span>
-        <br><br>
-        <div class="add-to-cart">
-          <%= link_to "Add to Cart", cart_bunkers_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
+        <br>
+        <div class="row">
+          <div class="bunker-description col s6">
+            <%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %>
+            <p>Location: <%= bunker.location.city %></p>
+            <p><%= bunker.description %></p>
+          </div>
+          <br><br>
+          <span class="activator grey-text text-darken-4 card-price"><%= number_to_currency(bunker.price) %></span>
+          <br><br>
+          <div class="add-to-cart">
+            <%= link_to "Add to Cart", cart_bunkers_path(bunker_id: bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
+          </div>
         </div>
-      </div>
-    </div></center> <!-- end of card -->
-    <% end %>
-  </div> <!-- end of Bunkers Container -->
-</div>
+      </div></center> <!-- end of card -->
+      <% end %>
+    </div> <!-- end of Bunkers Container -->
+  </div>
+<%= will_paginate %>
