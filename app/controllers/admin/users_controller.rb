@@ -6,5 +6,6 @@ class Admin::UsersController < Admin::BaseController
       @orders = Order.all
     end
     @store_admins = Role.find_by(name: "store_admin").users
+    @store_applications = Store.find_by()
   end
 end
