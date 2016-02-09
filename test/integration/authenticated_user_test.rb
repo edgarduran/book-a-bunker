@@ -1,17 +1,21 @@
 require "test_helper"
+require "minitest/autorun"
 
 class AuthenticatedUserTest < ActionDispatch::IntegrationTest
+    def require_js
+      Capybara.current_driver = :selenium
+    end
+    def teardown
+      super
+      Capybara.use_default_driver
+    end
+
+
   test "guest is prompted to login before checking out" do
     create(:location_with_bunker)
+    require_js
 
-    Capybara.register_driver :selenium do |app|
-      driver = Capybara::Selenium::Driver.new(app, :browser => :chrome)
-    end
-    binding.pry
-    driver.navigate.to bunkers_path
-    element = driver.find_element(:name, 'q')
-    element.send_keys "Hello WebDriver!"
-    element.submit
+    visit bunkers_path
 
     click_link "Add to Cart"
     within ".main-nav" do

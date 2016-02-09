@@ -13,7 +13,10 @@ class CartBunkersController < ApplicationController
   end
 
   def update
-
+    function = params[:function]
+    @cart.update_quantity(params[:function], params[:id])
+    session[:cart] = @cart.contents
+    redirect_to "/cart"
   end
 
   private

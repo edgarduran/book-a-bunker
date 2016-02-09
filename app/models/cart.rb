@@ -40,7 +40,9 @@ class Cart
     bunker_totals.sum
   end
 
-  def update_quantity
-
+  def update_quantity(function, bunker_id)
+    if function == "remove"
+      self.contents = contents.except(bunker_id)
+    end
   end
 end
