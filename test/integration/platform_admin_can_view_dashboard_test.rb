@@ -11,10 +11,10 @@ class PlatformAdminCanViewDashboardTest < ActionDispatch::IntegrationTest
                               last_name: "Store-Admin",
                               email: "store_admin@pivot.com",
                               password: "password")
-    user_store = Store.create(name: "Mister's Monkeys")
-    store_admin.store = user_store
     platform_admin_role = Role.create(name: "platform_admin")
     store_admin_role = Role.create(name: "store_admin")
+    user_store = create(:store)
+    user_store.users << store_admin
     platform_admin.roles << platform_admin_role
     store_admin.roles << store_admin_role
 
