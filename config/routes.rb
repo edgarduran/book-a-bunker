@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  namespace :stores, path: ":store", as: :store do
+  namespace :stores, path: ":store_slug", as: :store do
     resources :bunkers, param: :slug
     get "/dashboard", to: "dashboard#index"
   end

@@ -13,7 +13,6 @@ class GuestCanViewStoresTest < ActionDispatch::IntegrationTest
   test "guest can visit an individual store" do
     store = create(:store_with_bunkers)
     visit store_bunkers_path(store[:slug])
-    binding.pry
 
     assert_equal "/#{store.slug}/bunkers", current_path
     assert page.has_content? store.name

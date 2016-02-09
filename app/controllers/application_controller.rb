@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
     else
-      @current_user ||= User.create
+      @current_user ||= User.new
     end
   end
 
