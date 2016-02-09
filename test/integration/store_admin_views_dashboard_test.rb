@@ -54,7 +54,6 @@ class StoreAdminViewsDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content? order.formatted_date
     assert page.has_content? order.status
     assert_equal 1, store.orders.count
-    save_and_open_page
   end
 
 
