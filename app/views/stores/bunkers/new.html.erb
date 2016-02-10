@@ -19,6 +19,9 @@
   <%= f.label :bathrooms, class: "form-text" %>
   <%= f.text_field :bathrooms %>
 
+  <%= f.label "City", class: "form-text" %>
+  <%= f.collection_select :location_id, @locations, :id, :city, prompt: true, include_blank: true %>
+
   <%= f.submit "Create New Bunker", class:"submit-btn" %>
 
   <% end %>
