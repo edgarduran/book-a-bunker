@@ -21,7 +21,6 @@ class UserSeesErrorWithIncorrectFieldTest < ActionDispatch::IntegrationTest
   end
 
   test "password must be correct" do
-    skip
     user = create(:user)
 
     visit login_path
@@ -30,7 +29,7 @@ class UserSeesErrorWithIncorrectFieldTest < ActionDispatch::IntegrationTest
     fill_in "Password", with: "wrongpassword"
     click_button "Login"
 
-    assert page.has_content? "Your email or password is incorrect"
+    assert page.has_content? "Invalid Login"
     assert_equal login_path, current_path
   end
 end

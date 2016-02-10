@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   has_many :bunkers, through: :order_bunkers
   has_many :order_bunkers
   before_create :set_status
+  
   scope :ordered, -> { where(status: "ordered") }
   scope :paid, -> { where(status: "paid") }
   scope :canceled, -> { where(status: "canceled") }

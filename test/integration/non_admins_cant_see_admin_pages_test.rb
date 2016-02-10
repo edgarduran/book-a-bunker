@@ -1,14 +1,6 @@
 require "test_helper"
 
-class AdminCanViewDashboardTest < ActionDispatch::IntegrationTest
-  test "admin can view admin dashboard" do
-    skip
-    admin = create_admin
-    login(admin)
-
-    assert page.has_content? "Admin Dashboard"
-  end
-
+class NonAdminsCantSeeAdminPagesTest < ActionDispatch::IntegrationTest
   test "registered user can't view admin dashboard" do
     skip
     user = create(:user)

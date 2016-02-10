@@ -65,15 +65,4 @@ class ActionDispatch::IntegrationTest
     fill_in "Bathrooms", with: 1
     click_on "Create New Bunker"
   end
-
-  # def create_platform_admin
-  #   user = User.create(
-  #     first_name: "Platform",
-  #     last_name: "Admin",
-  #     email: "platformadmin@email.com",
-  #     password: "password",
-  #     password_confirmation: "password"
-  #   )
-  #   user.roles.create(name: "platform_admin")
-  # end
 end

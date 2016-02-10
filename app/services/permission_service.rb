@@ -1,5 +1,4 @@
 class PermissionService
-
   attr_reader :user, :controller, :action
 
   def initialize(user)
@@ -37,5 +36,4 @@ class PermissionService
   def guest_permissions
     return true
   end
-
 end
