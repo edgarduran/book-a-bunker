@@ -13,6 +13,9 @@ class GuestCanViewLocationsTest < ActionDispatch::IntegrationTest
 
   test 'guest can view bunkers by location' do
     location = create(:location_with_bunker)
+    bunkers = location.bunkers
+    store = create(:store)
+    store.bunkers << bunkers
     visit location_path(location.slug)
 
     assert_equal location_path(location.slug), current_path

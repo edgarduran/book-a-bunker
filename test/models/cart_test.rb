@@ -8,8 +8,8 @@ class CartTest < ActiveSupport::TestCase
   test "can add an bunker to cart" do
     cart = Cart.new({ "2" => 1 })
 
-    cart.add_bunker(1)
-    cart.add_bunker(2)
+    cart.add_bunker(1, 1)
+    cart.add_bunker(2, 2)
 
     assert_equal({ "1" => 1, "2" => 2 }, cart.contents)
   end

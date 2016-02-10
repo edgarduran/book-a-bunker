@@ -5,6 +5,8 @@
     </div>
     <div class="col s4">
       <h1><%= @bunker.title %></h1>
+      <p>Location: <%= link_to @bunker.location.city, location_path(@bunker.location.slug) %></p>
+      <p>Store: <%= link_to @bunker.store.name, store_bunkers_path(@bunker.store.slug) %></p>
       <p><%= @bunker.description %></p>
       <p><%= number_to_currency(@bunker.price) %></p>
     </div>
