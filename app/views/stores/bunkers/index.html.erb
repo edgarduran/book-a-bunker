@@ -3,7 +3,7 @@
 
 <ul>
   <% @bunkers.each do |bunker| %>
-    <li><%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %></li>
+    <li><%= link_to bunker.title, bunker, class: "bunker-title grey-text text-darken-4" %></li>
     <li><%= bunker.description %></li>
     <p>Location: <%= link_to bunker.location.city, location_path(bunker.location.slug) %></p>
     <% if store_admin? %>

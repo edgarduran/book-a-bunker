@@ -2,18 +2,20 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
 
   test "admin can create a new bunker" do
     admin = create_store_admin
+    location = Location.create(city: "Denver")
     login(admin)
 
     visit store_dashboard_path(admin.store)
     click_on "Add New Bunker"
 
     assert_equal new_store_bunker_path(admin.store.slug), current_path
-    save_and_open_page
+
     fill_in "Bunker Name", with: "Artist Loft Bunker"
     fill_in "Description", with: "So trendy and awesome"
     fill_in "Price", with: 100
     fill_in "Bedrooms", with: 2
     fill_in "Bathrooms", with: 1
+    select location.city, from: "bunker[location_id]"
     click_on "Create New Bunker"
 
     assert_equal store_bunkers_path(admin.store.slug), current_path
@@ -46,17 +48,24 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can delete a bunker" do
-    # login_store_admin_with_store
     admin = create_store_admin
+    store = admin.store
+    bunker = store.bunkers.first
     login(admin)
-    assert page.has_content? "Artist Loft Bunker"
-    assert page.has_content? "So trendy and awesome"
+    assert_equal store_dashboard_path(admin.store.slug), current_path
+
+    visit store_bunkers_path(admin.store.slug)
+    assert_equal store_bunkers_path(admin.store.slug), current_path
+
+    assert page.has_content? bunker.title
+    assert page.has_content? bunker.description
 
     click_on "Delete Bunker"
 
     assert page.has_content? "Bunker has been Deleted!"
-    refute page.has_content? "Artist Loft Bunker"
-    refute page.has_content? "So trendy and awesome"
+    assert_equal store_bunkers_path(admin.store.slug), current_path
+    refute page.has_content? bunker.title
+    refute page.has_content? bunker.description
     assert_equal store_bunkers_path(Store.last.slug), current_path
   end
 
