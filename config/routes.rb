@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/dashboard", to: "users#index"
-    resources :items, only: [:new, :create, :edit, :update, :destroy]
   end
 
   namespace :stores, path: ":store_slug", as: :store do
