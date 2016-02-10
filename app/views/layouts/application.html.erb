@@ -28,13 +28,13 @@
   <!-- Dropdown Setups. Duplicates to account for side-nav -->
   <ul id="location-dropdown1" class="dropdown-content">
     <% all_locations.each do |location| %>
-    <li><%= link_to location.city.capitalize, location_path(location.city) %></li>
+    <li><%= link_to location.city.capitalize, location_path(location.slug) %></li>
     <li class="divider"></li>
     <% end %>
   </ul>
   <ul id="location-dropdown2" class="dropdown-content">
     <% all_locations.each do |location| %>
-    <li><%= link_to location.city.capitalize, location_path(location.city) %></li>
+    <li><%= link_to location.city.capitalize, location_path(location.slug) %></li>
     <li class="divider"></li>
     <% end %>
   </ul>
