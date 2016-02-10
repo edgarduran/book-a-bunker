@@ -1,11 +1,11 @@
 class Stores::BunkersController < Stores::StoresController
+  before_action :find_bunker, only: [:show, :edit, :update]
 
   def index
     @bunkers = current_store.bunkers
   end
 
   def show
-    @bunker = Bunker.find(params[:slug])
   end
 
   def new
@@ -26,12 +26,10 @@ class Stores::BunkersController < Stores::StoresController
   end
 
   def edit
-    @bunker = Bunker.find(params[:slug])
     @store = current_store
   end
 
   def update
-    @bunker = Bunker.find(params[:slug])
     @bunker.update_attributes(bunker_params)
     flash[:notice] = "Bunker Updated!"
     redirect_to store_bunker_path(current_store.slug, @bunker)
@@ -44,6 +42,10 @@ class Stores::BunkersController < Stores::StoresController
   end
 
   private
+
+  def find_bunker
+    @bunker = Bunker.find(params[:slug])
+  end
 
   def bunker_params
     params.require(:bunker).permit(

@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
           :source => params[:stripeToken]
         )
 
-        charge = Stripe::Charge.create(
+        Stripe::Charge.create(
           :customer => customer.id,
           :amount => @amount,
           :description => 'Rails Stripe customer',
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
         )
 
         session[:cart] = nil
-        flash[:notice] = "Order successfully placed!"
+        flash[:notice] = "Order successfully placed! Your bunker is secured."
         redirect_to dashboard_path
       end
 
@@ -47,5 +47,3 @@ class OrdersController < ApplicationController
       redirect_to cart_path
   end
 end
-
-# PUBLISHABLE_KEY=pk_test_P2j0SiGEfsE9FVyFKLYvpBkd SECRET_KEY=sk_test_4Po7CVh1tVFZb9ftNQbNy7qM rails s

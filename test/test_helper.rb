@@ -81,5 +81,4 @@ end
     fill_in "Bathrooms", with: 1
     click_on "Create New Bunker"
   end
-
 end
