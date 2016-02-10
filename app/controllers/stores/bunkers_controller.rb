@@ -2,7 +2,7 @@ class Stores::BunkersController < Stores::StoresController
   before_action :find_bunker, only: [:show, :edit, :update]
 
   def index
-    @bunkers = current_store.bunkers
+    @bunkers = current_store.bunkers.paginate(page: params[:page], :per_page => 10)
   end
 
   def show

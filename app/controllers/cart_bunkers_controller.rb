@@ -16,7 +16,7 @@ class CartBunkersController < ApplicationController
   def index
     @bunkers = @cart.cart_bunkers
     @path = login_path
-    @path = new_charge_path if current_user.registered_user?
+    @path = new_charge_path if current_user.registered_user? || current_user.store_admin? || current_user.platform_admin?
     session[:referrer] = cart_path
   end
 

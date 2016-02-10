@@ -21,8 +21,12 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    if @user.platform_admin? || @user.store_admin?
+    if @user.platform_admin?
       redirect_to admin_dashboard_path
+    elsif @user.store_admin?
+      redirect_to store_dashboard_path(current_user.store.slug)
+    else
+      render :show
     end
   end
 

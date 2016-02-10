@@ -1,11 +1,15 @@
-<h1>Store Application</h1>
+<div class="container center">
+  <h1>Store Application</h1>
+</div>
 
-<%= form_for(@store) do |f| %>
-  <%= f.label :name, "Store Name" %>
+<div class="container" id="user-form">
+  <%= form_for(@store) do |f| %>
+  <%= f.label :name, "Store Name", class: "form-text" %>
   <%= f.text_field :name %>
 
-  <%= f.label :description, "Store Description" %>
-  <%= f.text_field :description %>
+  <%= f.label :description, "Store Description", class: "form-text" %>
+  <%= f.text_area :description %>
 
   <%= f.submit "Apply For Store" %>
-<% end %>
+  <% end %>
+</div>
