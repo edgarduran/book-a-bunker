@@ -6,11 +6,14 @@ class AuthenticatedUserTest < ActionDispatch::IntegrationTest
   test "guest is prompted to login before checking out" do
     i_need_javascript do
       location = create(:location_with_bunker)
+      bunkers = location.bunkers
+      store = create(:store)
+      store.bunkers << bunkers
       visit bunkers_path
 
       click_on "Book Now!!"
 
-
+      save_and_open_page
       find("#myStartDatePicker").click
       click_on "Select"
 
