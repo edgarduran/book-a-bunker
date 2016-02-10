@@ -3,7 +3,9 @@ require "test_helper"
 class UserCanEditBunkerNightsQuantityInCart < ActionDispatch::IntegrationTest
   test "user removes bunker from cart by subtracting until quantity is 0" do
     location = create(:location_with_bunkers)
-    bunker = location.bunkers.first
+    bunkers = location.bunkers
+    store = create(:store)
+    store.bunkers << bunkers
 
     visit bunkers_path
 
@@ -25,6 +27,8 @@ class UserCanEditBunkerNightsQuantityInCart < ActionDispatch::IntegrationTest
   test "user removes bunker from cart by clicking remove button" do
     location = create(:location_with_bunker)
     bunker = location.bunkers.first
+    store = create(:store)
+    store.bunkers << bunker
 
     visit bunkers_path
     click_link "Add to Cart"
