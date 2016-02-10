@@ -51,13 +51,6 @@ h2, h3, h4, h5 {
   font-size:3em;
 }
 
-#admin-btns {
-  font-family: "Impact Label Reversed";
-  color: black;
-  border-style: solid;
-  font-size: 1.3em;
-}
-
 .warning-header {
   float: left;
 }
@@ -126,7 +119,7 @@ a.brand-logo {
   margin-top: 40px;
 }
 
-  /* bunkers Section */
+  /* Bunkers Section */
 
 .card-title a {
   color: rgb(36, 3, 6);
@@ -146,6 +139,15 @@ a.brand-logo {
 
 .bunker-title {
   font-size: 2.2em;
+}
+
+#bunker-show-text {
+  font-size: 1.6em;
+}
+
+.store-bunkers {
+  border-style: solid;
+  padding: 20px;
 }
 
   /* Item Cards */
@@ -238,6 +240,13 @@ a.brand-logo {
   font-size: 1.2em;
 }
 
+#checkout-btn {
+  font-family: "Impact Label Reversed";
+  color: black;
+  border-style: solid;
+  font-size: 1.6em;
+}
+
 /* Admin Orders Index */
 
 .order-status-side-bar {
@@ -314,9 +323,13 @@ a.brand-logo {
   padding-top: 15px;
 }
 
-#date-picker-button {
+#date-picker-btn {
   width: 200px;
+  font-family: "Rough Typewriter";
+  color: black;
+  font-size: 1.3em;
 }
+
 /*Flash Notices*/
 
 .flashes {
@@ -357,6 +370,13 @@ a.brand-logo {
 
 .edit-profile-button {
   margin-top: 100px;
+}
+
+#dashboard-btns {
+  font-family: "Impact Label Reversed";
+  color: black;
+  border-style: solid;
+  font-size: 1.3em;
 }
 
 /*Individual Past Order*/

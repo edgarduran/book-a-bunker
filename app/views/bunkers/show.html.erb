@@ -1,16 +1,16 @@
-<div id="bunker-show" class="container site-font">
-  <div class="row">
-    <div class="card-image col s8 center">
+<div class="bunker-show">
+  <div class="container row site-font">
+    <div class="col s5">
+      <h1><%= @bunker.title %></h1>
+      <p id="bunker-show-text">Location: <%= link_to @bunker.location.city, location_path(@bunker.location.slug) %></p>
+      <p id="bunker-show-text">Store: <%= link_to @bunker.store.name, store_bunkers_path(@bunker.store.slug) %></p>
+      <p><%= @bunker.description %></p>
+      <p id="bunker-show-text"><%= number_to_currency(@bunker.price) %> / night</p>
+    </div><br>
+    <div class="card-image col s5 center" id="bunker-show-img">
       <%= image_tag(@bunker.image) %>
     </div>
-    <div class="col s4">
-      <h1><%= @bunker.title %></h1>
-      <p>Location: <%= link_to @bunker.location.city, location_path(@bunker.location.slug) %></p>
-      <p>Store: <%= link_to @bunker.store.name, store_bunkers_path(@bunker.store.slug) %></p>
-      <p><%= @bunker.description %></p>
-      <p><%= number_to_currency(@bunker.price) %></p>
-    </div>
-    <div class="admin-btns">
+    <div class="col s2">
       <p><%= render partial: @partial %></p>
     </div>
   </div>

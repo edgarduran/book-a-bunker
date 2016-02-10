@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     elsif @user.store_admin?
       redirect_to store_dashboard_path(current_user.store.slug)
     else
-      redirect_to dashboard_path
+      render :show
     end
   end
 

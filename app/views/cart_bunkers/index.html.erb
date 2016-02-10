@@ -5,7 +5,7 @@
 <table class="container bordered highlight site-font">
   <thead>
     <tr class="cart-table table-headers">
-        <th class="bunker-header" data-field="image">Bunker</th>
+        <th class="bunker-header" data-field="image">Bunkers</th>
         <th data-field="bunker"></th>
         <th class="center" data-field="quantity">Nights</th>
         <th class="center" data-field="price">Price</th>
@@ -60,5 +60,5 @@
 </table>
 
 <div class="checkout">
-  <%= link_to "Checkout", @path, class:"btn black site-font" %>
+  <%= link_to "Checkout", @path, id:"checkout-btn" %>
 </div>

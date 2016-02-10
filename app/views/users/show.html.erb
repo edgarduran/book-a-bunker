@@ -8,9 +8,9 @@
     <li class="user-email"><%= current_user.email %></li><br>
 
     <div class="edit-profile-button">
-      <li><%= link_to "Edit Profile", edit_user_path(current_user), class:"btn black" %></li><br>
-      <li><%= link_to "View Past Orders", orders_path, class:"btn black" %></li>
-      <li><%= link_to "Store Application", new_store_path %> </li>
+      <li><%= link_to "Edit Profile", edit_user_path(current_user), id:"dashboard-btns" %></li><br>
+      <li><%= link_to "View Past Orders", orders_path, id:"dashboard-btns" %></li><br>
+      <li><%= link_to "Store Application", new_store_path, id:"dashboard-btns" %> </li>
     </div>
   </ul>
 </div>
