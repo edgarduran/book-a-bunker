@@ -13,7 +13,6 @@ class AuthenticatedUserTest < ActionDispatch::IntegrationTest
 
       click_on "Book Now!!"
 
-      save_and_open_page
       find("#myStartDatePicker").click
       click_on "Select"
 
