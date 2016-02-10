@@ -7,6 +7,10 @@ class Seed
     seed.generate_roles
     seed.generate_stores
     seed.generate_locations
+    seed.generate_store_admin_andrew
+    seed.generate_registered_users
+    seed.generate_registered_user_josh
+    seed.generate_platform_admin_jorge
   end
 
   def generate_roles
@@ -28,18 +32,74 @@ class Seed
   end
 
   def generate_stores
-    20.times do |i|
+    19.times do |i|
       store = Store.create(name: Faker::Company.name,
                            description: Faker::Company.catch_phrase,
                            approved: true)
       user = User.create(first_name: Faker::Name.first_name,
                          last_name: Faker::Name.last_name,
                          email: Faker::Internet.email,
-                         password: "password",)
+                         password: "password")
       puts "Created Store: #{store.name}"
       store.users << user
       user.roles << Role.find_by(name: "store_admin")
     end
+  end
+
+  def generate_store_admin_andrew
+    store = Store.create(name: "Andrew's Apples",
+                         description: "The best apples this side of the divide.",
+                         approved: true)
+    andrew = User.create(first_name: "Andrew",
+                         last_name: "Carmer",
+                         email: "andrew@turing.io",
+                         password: "password")
+    puts "Created Store Admin Andrew!"
+    store.users << andrew
+    andrew.roles << Role.find_by(name: "store_admin")
+  end
+
+  def generate_registered_users
+    99.times do |i|
+      user = User.create(first_name: Faker::Name.first_name,
+                         last_name: Faker::Name.last_name,
+                         email: Faker::Internet.email,
+                         password: "password")
+      puts "Created User: #{user.first_name} #{user.last_name}"
+      user.roles << Role.find_by(name: "registered_user")
+      10.times do |x|
+        store = Store.find(x+1)
+        bunker = store.bunkers.find(x+1)
+        current = user.orders.create
+        current.bunkers << bunker
+        puts "Order ##{x} for user."
+      end
+    end
+  end
+
+  def generate_registered_user_josh
+    josh = User.create(first_name: "Josh",
+                       last_name: "Mejia",
+                       email: "josh@turig.io",
+                       password: "password")
+    puts "Created Registered User Josh!"
+    josh.roles << Role.find_by(name: "registered_user")
+    10.times do |x|
+      store = Store.find(x+1)
+      bunker = store.bunkers.find(x+1)
+      current = josh.orders.create
+      current.bunkers << bunker
+      puts "Order ##{x} for user."
+    end
+  end
+
+  def generate_platform_admin_jorge
+    jorge = User.create(first_name: "Josh",
+                       last_name: "Tellez",
+                       email: "jorge@turig.io",
+                       password: "password")
+    puts "Created Platform Admin Jorge!"
+    jorge.roles << Role.find_by(name: "platform_admin")
   end
 
   def generate_bunkers(target)
@@ -60,7 +120,7 @@ class Seed
       store.bunkers << bunker
       target.bunkers << bunker
       @counter += 1
-      if @counter == 21
+      if @counter == 20
         @counter = 1
       end
     end
