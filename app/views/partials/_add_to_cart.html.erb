@@ -1,1 +1,33 @@
-<%= link_to "Add to Cart", cart_bunkers_path(bunker_id: @bunker.id), method: :post, class: "black center-align waves-effect waves-light btn site-font" %>
+<div class="container">
+  <%= form_tag(cart_bunkers_path(bunker_id: @bunker.id), method: :post) do %>
+    <div class="btn" id="date-picker-button">
+      <input type="text" id="myStartDatePicker" placeholder="Pick Start Date" name="startDate"></input>
+    </div>
+    <br>
+    <br>
+    <div class="btn" id="date-picker-button">
+      <input type="text" id="myEndDatePicker" placeholder="Pick End Date" name = "endDate"></input>
+    </div>
+    <br>
+    <br>
+    <div class="waves-effect waves-light btn white-text col-md-3">
+      <%= submit_tag "Add to Cart" %>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+$(document).ready(function(){
+  $("#myStartDatePicker").pickadate({
+    close: 'Select',
+    format: 'mmm dd, yyyy',
+    formatSubmit: 'mm dd, yyyy'
+  });
+  $("#myEndDatePicker").pickadate({
+    close: 'Select',
+    format: 'mmm dd, yyyy',
+    formatSubmit: 'mm dd, yyyy'
+  });
+});
+</script>

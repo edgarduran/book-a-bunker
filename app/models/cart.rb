@@ -5,10 +5,11 @@ class Cart
     @contents = contents || {}
   end
 
-  def add_bunker(bunker_id)
+  def add_bunker(bunker_id, days)
     contents[bunker_id.to_s] ||= 0
-    contents[bunker_id.to_s] += 1
+    contents[bunker_id.to_s] = days
   end
+
 
   def total
     contents.values.sum
@@ -40,15 +41,7 @@ class Cart
   end
 
   def update_quantity(function, bunker_id)
-    case function
-    when "add"
-      contents[bunker_id] += 1
-    when "subtract"
-      contents[bunker_id] -= 1
-      if contents[bunker_id] <= 0
-        self.contents = contents.except(bunker_id)
-      end
-    when "remove"
+    if function == "remove"
       self.contents = contents.except(bunker_id)
     end
   end
