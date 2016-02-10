@@ -23,7 +23,9 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.platform_admin?
       redirect_to admin_dashboard_path
-    else @user.store_admin?
+    elsif @user.store_admin?
+      redirect_to store_dashboard_path(current_user.store.slug)
+    else
       redirect_to dashboard_path
     end
   end
