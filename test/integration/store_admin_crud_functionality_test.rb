@@ -10,7 +10,7 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
 
     assert_equal new_store_bunker_path(admin.store.slug), current_path
 
-    fill_in "Bunker Name", with: "Artist Loft Bunker"
+    fill_in "Bunker Name", with: "Artist loft bunker"
     fill_in "Description", with: "So trendy and awesome"
     fill_in "Price", with: 100
     fill_in "Bedrooms", with: 2
@@ -19,8 +19,8 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     click_on "Create New Bunker"
 
     assert_equal store_bunkers_path(admin.store.slug), current_path
-
-    assert page.has_content? "Artist Loft Bunker"
+    save_and_open_page
+    assert page.has_content? "Artist loft bunker"
     assert page.has_content? "So trendy and awesome"
   end
 
