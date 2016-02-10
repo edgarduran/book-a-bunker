@@ -1,11 +1,8 @@
 class Seed
   def self.start
     seed = Seed.new
-    # seed.generate_bunkers
-    seed.generate_users
-    seed.generate_locations
-    seed.generate_stores
     seed.generate_roles
+    seed.generate_locations
   end
 
   def generate_roles
@@ -18,56 +15,51 @@ class Seed
     locations = ["Atlanta", "Augusta", "Bismarck", "Charlotte", "Chicago",
                  "Dallas", "Denver", "Detroit", "Green Bay", "Kansas City",
                  "Los Angeles", "Memphis", "Miami", "New Orleans", "New York",
-                 "Phoenix", "Portland", "Salt Lake City", "San Francisco", "Washington, D.C."]
+                 "Phoenix", "Portland", "Salt Lake City", "San Francisco", "Washington,D.C."]
     locations.each do |location|
       city = Location.create(city: location)
-      # puts "Created City: #{city.city}"
+      puts "Created City: #{city.city}"
+      generate_store
       generate_bunkers(city)
     end
   end
 
-  def generate_stores
-    20.times do |i|
-      store = Store.create(name: Faker::Company.name,
-                           description: Faker::Company.catch_phrase)
-      # puts "Created Store #{i}: #{store.name}"
-      add_bunkers_to_store(store)
-    end
+  def generate_store
+    store = Store.create(name: Faker::Company.name,
+                         description: Faker::Company.catch_phrase,
+                         approved: true)
+    user = User.create(first_name: Faker::Name.first_name,
+                       last_name: Faker::Name.last_name,
+                       email: Faker::Internet.email,
+                       password: "password",)
+    puts "Created Store: #{store.name}"
+    store.users << user
+    user.roles << Role.find_by(name: "store_admin")
   end
 
   def generate_bunkers(target)
+    images = ["abandoned-beach-bunker.jpg", "airy-bunker.jpg", "bond-bunker.jpg", "futuristic-bunker.jpg",
+              "gun-bunker.jpg", "italian-ocean-bunker.jpg", "serene-bunker.jpg", "ww1-park-bunker.jpg"]
     50.times do |i|
+      counter = 1
       bunker = Bunker.create(
         title: "Bunker ##{i} #{target.city}",
         description: Faker::Lorem.paragraph,
         price: Faker::Commerce.price,
-        image: 'futuristic-bunker.jpg',
+        image: images[rand(images.length)],
         bedrooms: Faker::Number.between(1, 5),
         bathrooms: Faker::Number.between(0, 3)
       )
-      # puts "Created Bunker #{i}: #{bunker.title}"
-      target.bunkers << bunker
-    end
-  end
-
-  def add_bunkers_to_store(store)
-    3.times do |i|
-      # puts "Added Bunkers to Store #{store.id}"
-      bunker = Bunker.offset(rand(Bunker.count)).first
+      puts "Created Bunker #{i}: #{bunker.title}"
+      store = Store.find(counter)
       store.bunkers << bunker
+      target.bunkers << bunker
+      counter += 1
+      if counter == 21
+        counter = 1
+      end
     end
   end
-
-  def generate_users
-    5.times do |i|
-      User.create(first_name: Faker::Name.name,
-                  last_name: Faker::Name.name,
-                  email: Faker::Internet.email, 
-                  password: "password")
-      puts "Created user number #{i}"
-    end
-  end
-
 end
 
 Seed.start
