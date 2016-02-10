@@ -10,10 +10,6 @@
     </div>
     <div class="admin-btns">
       <p><%= render partial: @partial %></p>
-      <% if store_admin? %>
-        <p><%= link_to "Edit Bunker", edit_admin_bunker_path(@bunker), class: "black center-align waves-effect waves-light btn site-font" %></p>
-        <p><%= link_to "Delete Bunker", admin_bunker_path(@bunker), method: :delete, class: "black center-align waves-effect waves-light btn site-font" %></p>
-      <% end %>
     </div>
   </div>
 </div>
