@@ -1,7 +1,11 @@
 class Seed
+
+  attr_accessor :counter
+
   def self.start
     seed = Seed.new
     seed.generate_roles
+    seed.generate_stores
     seed.generate_locations
   end
 
@@ -19,29 +23,30 @@ class Seed
     locations.each do |location|
       city = Location.create(city: location)
       puts "Created City: #{city.city}"
-      generate_store
       generate_bunkers(city)
     end
   end
 
-  def generate_store
-    store = Store.create(name: Faker::Company.name,
-                         description: Faker::Company.catch_phrase,
-                         approved: true)
-    user = User.create(first_name: Faker::Name.first_name,
-                       last_name: Faker::Name.last_name,
-                       email: Faker::Internet.email,
-                       password: "password",)
-    puts "Created Store: #{store.name}"
-    store.users << user
-    user.roles << Role.find_by(name: "store_admin")
+  def generate_stores
+    20.times do |i|
+      store = Store.create(name: Faker::Company.name,
+                           description: Faker::Company.catch_phrase,
+                           approved: true)
+      user = User.create(first_name: Faker::Name.first_name,
+                         last_name: Faker::Name.last_name,
+                         email: Faker::Internet.email,
+                         password: "password",)
+      puts "Created Store: #{store.name}"
+      store.users << user
+      user.roles << Role.find_by(name: "store_admin")
+    end
   end
 
   def generate_bunkers(target)
     images = ["abandoned-beach-bunker.jpg", "airy-bunker.jpg", "bond-bunker.jpg", "futuristic-bunker.jpg",
               "gun-bunker.jpg", "italian-ocean-bunker.jpg", "serene-bunker.jpg", "ww1-park-bunker.jpg"]
+    @counter = 1
     50.times do |i|
-      counter = 1
       bunker = Bunker.create(
         title: "Bunker ##{i} #{target.city}",
         description: Faker::Lorem.paragraph,
@@ -54,12 +59,13 @@ class Seed
       store = Store.find(counter)
       store.bunkers << bunker
       target.bunkers << bunker
-      counter += 1
-      if counter == 21
-        counter = 1
+      @counter += 1
+      if @counter == 21
+        @counter = 1
       end
     end
   end
+
 end
 
 Seed.start
