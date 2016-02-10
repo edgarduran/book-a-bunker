@@ -1,1 +1,1 @@
-Project Outline: https://github.com/turingschool/curriculum/blob/master/source/projects/little_shop.markdown
+Project Outline: https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.md
