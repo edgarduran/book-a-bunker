@@ -15,31 +15,47 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  def i_need_javascript
+    initial_driver = Capybara.current_driver
+    Capybara.current_driver = Capybara.javascript_driver
+    yield
+  ensure
+    Capybara.current_driver = initial_driver
+  end
+
   def teardown
     reset_session!
   end
 
-  def login(user)
-    visit login_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
-    click_button "Login"
+class ActiveRecord::Base
+  @@shared_connection = retrieve_connection
+  def self.connection
+    @@shared_connection || retrieve_connection
   end
+end
 
-  def create_store_admin
-    store = Store.create(name: "Cool Store", description: "Shacks")
-    store_admin = User.create(
-      first_name: "Store",
-      last_name: "Admin",
-      email: "storeadmin@email.com",
-      password: "password",
-      password_confirmation: "password"
-    )
-    role = Role.create(name: "store_admin")
-    store_admin.roles << role
-    store.users << store_admin
-    store_admin
-  end
+def login(user)
+  visit login_path
+  fill_in "Email", with: user.email
+  fill_in "Password", with: user.password
+  click_button "Login"
+end
+
+
+def create_store_admin
+  store = Store.create(name: "Cool Store", description: "Shacks")
+  store_admin = User.create(
+    first_name: "Store",
+    last_name: "Admin",
+    email: "storeadmin@email.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+  role = Role.create(name: "store_admin")
+  store_admin.roles << role
+  store.users << store_admin
+  store_admin
+end
 
   def login_store_admin
     admin = create_store_admin
@@ -66,14 +82,4 @@ class ActionDispatch::IntegrationTest
     click_on "Create New Bunker"
   end
 
-  # def create_platform_admin
-  #   user = User.create(
-  #     first_name: "Platform",
-  #     last_name: "Admin",
-  #     email: "platformadmin@email.com",
-  #     password: "password",
-  #     password_confirmation: "password"
-  #   )
-  #   user.roles.create(name: "platform_admin")
-  # end
 end
