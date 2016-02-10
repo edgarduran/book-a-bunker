@@ -12,22 +12,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-
 <body class = "hero-image">
-
-  <div class="white-text">
-    <div class="row">
-      <h3>It's Getting Dark....</h3>
-      <h3>Choose the nearest city before it's too late:</h3>
+  <div class="container">
+    <div class="white-text">
+      <div class="container">
+        <div class="center homepage-button">
+          <h4>It's Getting Dark....Choose the nearest city before it's too late:</h4>
+          <%= link_to "All Available Bunkers", bunkers_path, class: 'btn red'  %>
+        </div>
+      </div>
+      <div class="map-container">
+        <div class="special">
+          <%= render partial: 'partials/us_map' %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="special">
-    <%= render partial: 'partials/us_map' %>
-  </div>
-  <div class="center homepage-button">
-    <%= link_to "All Available Bunkers", bunkers_path, class: 'btn red'  %>
-  </div>
-
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified JavaScript -->
