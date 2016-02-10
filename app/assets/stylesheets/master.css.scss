@@ -69,8 +69,7 @@ a.enter:hover {
 
 .special {
   position: relative;
-  left: 22%;
-  top: -3%;
+  margin: auto;
   table, td, th {
   margin: 0px;
   padding: 0px 0px 0px 0px;
@@ -81,10 +80,35 @@ a.enter:hover {
   }
 }
 
-.homepage-button {
-  position: relative;
-  bottom: 2%;
+.map-container {
+  position: absolute;
+  margin: auto;
+  top: 20%;
+  left: 23%;
 }
+
+.map-container-index {
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  box-shadow: 5px 5px 5px 5px #888888;
+}
+
+.dropshadow {
+  box-shadow: 4px 4px 4px 4px #888888;
+}
+
+.locations-header {
+  position: absolute;
+  top: 8%;
+  left: 45%;
+}
+
+.homepage-button {
+  font-family: "Rough Typewriter";
+  font-size: 25px;
+}
+
 li {
   font-family: "Rough Typewriter"
 }
