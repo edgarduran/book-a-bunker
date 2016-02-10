@@ -3,8 +3,9 @@
 
 <ul>
   <% @bunkers.each do |bunker| %>
-    <li><%= bunker.title %></li>
+    <li><%= link_to bunker.title.capitalize, bunker, class: "bunker-title grey-text text-darken-4" %></li>
     <li><%= bunker.description %></li>
+    <p>Location: <%= link_to bunker.location.city, location_path(bunker.location.slug) %></p>
     <% if store_admin? %>
       <li><%= link_to "Delete Bunker", store_bunker_path(current_store.slug, bunker), method: :delete, class:"btn black" %></li>
       <li><%= link_to "Edit Bunker", edit_store_bunker_path(current_store.slug, bunker), class:"btn black" %></li>
