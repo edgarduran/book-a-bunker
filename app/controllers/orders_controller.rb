@@ -20,19 +20,17 @@ class OrdersController < ApplicationController
       end
       if new_order.save
         @amount = (@cart.bunker_totals.sum) * 100
-
         customer = Stripe::Customer.create(
           :email => params[:stripeEmail],
           :source => params[:stripeToken]
         )
-
         Stripe::Charge.create(
           :customer => customer.id,
           :amount => @amount,
           :description => 'Rails Stripe customer',
           :currency => 'usd'
         )
-
+        mail_service.send_email(current_user.email)
         session[:cart] = nil
         flash[:notice] = "Order successfully placed! Your bunker is secured."
         redirect_to dashboard_path
@@ -46,4 +44,9 @@ class OrdersController < ApplicationController
       flash[:error] = e.message
       redirect_to cart_path
   end
+
+  def mail_service
+    MailService.new
+  end
+
 end
