@@ -51,6 +51,13 @@ h3 {
   font-size:3em;
 }
 
+#admin-btns {
+  font-family: "Impact Label Reversed";
+  color: black;
+  border-style: solid;
+  font-size: 1.3em;
+}
+
 .warning-header {
   float: left;
 }
@@ -249,8 +256,8 @@ a.brand-logo {
 }
 
 .user-orders-header {
-  position: relative;
-  left: -30px;
+  font-size: 4em;
+  text-decoration: underline;
 }
 
 /*Forms*/
