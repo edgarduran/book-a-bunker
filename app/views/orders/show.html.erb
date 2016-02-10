@@ -1,49 +1,22 @@
 <div class="container center">
   <h1>Order Details for <%= @order.formatted_date %>: </h1>
 </div>
-
-<table class="container bordered highlight site-font">
-  <thead>
-    <tr class="order-item-table table-headers">
+<div class="order-container container center">
+  <table class="bordered highlight site-font">
+    <thead>
+      <tr class="order-item-table table-headers">
         <th class="item-header" data-field="image">Item</th>
-        <th data-field="item"></th>
-        <th class="center" data-field="quantity">Quantity</th>
+        <th class="center" data-field="dates">Dates</th>
         <th class="center" data-field="price">Price</th>
-        <th class="center" data-field="total">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.items.each do |item| %>
-      <tr class="order-item-table">
-        <td>
-          <div class="order-image center">
-            <%= link_to image_tag(item.image), item %>
-          </div>
-        </td>
-        <td>
-          <div>
-            <%= link_to item.title.capitalize, item, class: "order-item-title" %>
-          </div>
-        </td>
-        <td class="order-item-quantity center">
-          <%= @order.item_quantity(item.id) %>
-        </td>
-
-        <td class="item-price center"><%= number_to_currency(item.price) %></td>
-
-        <td class="item-subtotal center"><%= number_to_currency(@order.item_subtotal(item.id)) %></td>
+        <th class="center" data-field="status">Status</th>
+        <th class="center" data-field="sub_total">Subtotal</th>
       </tr>
-    <% end %>
-    <tr class="order-item-table order-subtotal">
-      <td id="status-label" class="right">Status:</td>
-      <td><%= @order.status %></td>
-      <td><%= @order.show_updated_status %></td>
-      <td class="table-headers right-align">
-        <strong>Subtotal:</strong>
-      </td>
-      <td class="center">
-        <%= number_to_currency(@order.total) %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <%= render partial: 'partials/orders_table_item', collection: @order.bunkers, as: :bunker %>
+    </tbody>
+  </table>
+  <div class="order-total">
+    Total: <%= number_to_currency(@order.total) %>
+  </div>
+</div>

@@ -73,10 +73,9 @@ FactoryGirl.define do
     "City #{n}"
   end
 
-
-
-
   factory :order do
     bunkers { create_list(:bunker, 2) }
   end
+
+
 end

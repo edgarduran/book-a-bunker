@@ -255,7 +255,7 @@ a.brand-logo {
 
 /*Forms*/
 
-#login-form, #user-form, #item-form, #outbreak-form {
+#login-form, #user-form, #item-form {
   background-color: rgba(219, 211, 202, .6);
   font-family: "Rough Typewriter";
   font-weight: bold;
@@ -358,11 +358,24 @@ a.brand-logo {
     background-color: rgba(219, 211, 202, .6);
 }
 
-.order-item-title, .item-subtotal, .order-subtotal, .item-price, .order-item-quantity {
+.order-item-title, .item-subtotal, .order-subtotal, .item-price, .order-item-quantity, .order-total, .item-status {
   font-family: "Rough Typewriter";
   font-weight: bold;
   font-size: 1.4em;
   color: black;
+}
+
+.order-total {
+  float: right;
+  position: relative;
+  right: 7%;
+}
+
+.order-container {
+  border: 3px;
+  border-width: thick;
+  border-style: ridge;
+  border-color: black;
 }
 
 #status-label {
@@ -414,56 +427,15 @@ html, body { height: 100%; margin: 0; padding: 0; }
   font-size: .9em;
 }
 
-/*Rules Page*/
+ /* Stripe */
 
-.rules-card {
-  padding-top: 25px;
-  width: 80%;
-  height: 2500px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  background-color: rgba(219, 211, 202, .6);
-  font-family: "Rough Typewriter";
-  font-weight: bold;
-  font-size: 1.4em;
-}
-
-.zombie-font {
-  font-family: "Survival Horror";
-  font-size: 3em;
-}
-
-.rules-header {
-  font-family: "Survival Horror";
-  font-size: 96px;
-}
-
-#rules-body {
-  font-family: "Playfair Display SC", cursive;
-  color: rgb(139, 0, 0);
-}
-
-#rules-item {
-  font-family: "Playfair Display SC", cursive;
-  color: rgb(128, 0, 0);
-  font-weight: bold;
-  font-size: 1.6em;
-}
-
-/* Game */
-
-#game-div {
-  width    : 700px;
-  height   : 600px;
-  overflow : hidden;
-  position : relative;
-  margin-bottom: 50px;
-}
-
-#game-iframe {
-  position : absolute;
-  top      : -170px;
-  left     : -290px;
-  width    : 1280px;
-  height   : 1200px;
+ #stripe {
+   font-size: 3em;
+   color: black;
  }
+
+ button.stripe-button-el span {
+    color: black !important;
+    font-family: "Rough Typewriter" !important;
+    font-size: 1.5em !important;
+}

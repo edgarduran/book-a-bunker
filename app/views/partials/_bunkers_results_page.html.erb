@@ -4,8 +4,8 @@
     <div class="bunkers-container site-font">
       <% target.each do |bunker| %>
       <center><div class="card">
-        <div class="card-image col s3" >
-          <img class="activator" src=<%= bunker.image %>>
+        <div class="card-image col s3">
+          <%= image_tag(bunker.image) %>
         </div>
         <br>
         <div class="row">

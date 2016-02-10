@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    else
+      @current_user ||= User.new
+    end
   end
 
   def current_permission
@@ -30,9 +34,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def current_admin?
-  #   current_user && current_user.admin?
-  # end
+  def current_admin?
+    (current_user && current_user.platform_admin?) || (current_user && current_user.store_admin?)
+  end
   #
   # def unauthenticated_user_error
   #   render(file: "/public/404") unless current_user

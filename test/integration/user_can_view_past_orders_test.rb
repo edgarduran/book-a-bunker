@@ -4,18 +4,18 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
   test "all order details are displayed" do
     skip
     user = create(:user)
-    item_1 = Item.create(title: "Hammer", price: 10, description: "It hits")
-    item_2 = Item.create(title: "Ax", price: 500, description: "It cuts")
+    bunker_1 = Bunker.create(title: "Shack", price: 10, description: "Nice and airy")
+    bunker_2 = Bunker.create(title: "Artist Loft", price: 500, description: "So trendy")
     login(user)
 
-    visit item_path(item_1)
-    click_on "Add to Duffel"
-    visit item_path(item_2)
-    click_on "Add to Duffel"
-    visit item_path(item_2)
-    click_on "Add to Duffel"
+    visit bunker_path(bunker_1)
+    click_on "Add to Cart"
+    visit bunker_path(bunker_2)
+    click_on "Add to Cart"
+    visit bunker_path(bunker_2)
+    click_on "Add to Cart"
 
-    visit duffel_path
+    visit cart_path
     click_on "Checkout"
 
     order = user.orders.all.first
@@ -28,44 +28,22 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
     click_on "View Order"
     assert_equal order_path(order), current_path
 
-    assert page.has_content? item_1.title
-    assert page.has_content? item_2.title
+    assert page.has_content? bunker_1.title
+    assert page.has_content? bunker_2.title
 
-    order.order_items.each do |order_item|
-      assert page.has_content? order_item.quantity
+    order.order_bunkers.each do |order_bunker|
+      assert page.has_content? order_bunker.quantity
     end
 
-    order.item_subtotals.each do |item_subtotal|
-      assert page.has_content? number_to_currency(item_subtotal)
+    order.bunker_subtotals.each do |bunker_subtotal|
+      assert page.has_content? number_to_currency(bunker_subtotal)
     end
 
-    assert page.has_link? item_1.title
-    assert page.has_link? item_2.title
+    assert page.has_link? bunker_1.title
+    assert page.has_link? bunker_2.title
 
-    assert page.has_content? "Status: ordered"
+    assert page.has_content? "ordered"
     assert page.has_content? number_to_currency(order.total)
     assert page.has_content? order.formatted_date
-  end
-
-  test "retired items in a past order still link to item page" do
-    skip
-    user = create(:user_with_order)
-    order = user.orders.first
-    item = order.items.first
-    item.update_attribute(:status, "retired")
-    order.update_attribute(:status, "completed")
-
-    login(user)
-
-    visit order_path(order)
-
-    assert page.has_content? "Status: completed"
-    assert page.has_content? order.show_updated_status
-
-    assert page.has_link? item.title
-    click_on item.title
-    assert_equal item_path(item), current_path
-    refute page.has_content? "Add to Duffel"
-    assert page.has_content? "SOLD OUT!"
   end
 end
