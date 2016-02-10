@@ -2,28 +2,31 @@ require "test_helper"
 require "minitest/autorun"
 
 class AuthenticatedUserTest < ActionDispatch::IntegrationTest
-    def setup
-      Capybara.current_driver = :selenium
-      location = Location.create(city: "easton")
-      bunker   = Bunker.create(title: "Bunker 1", description: "Shelter", price: 150)
-      # location.bunkers << bunker
-    end
-    def teardown
-      super
-      Capybara.use_default_driver
-    end
-
 
   test "guest is prompted to login before checking out" do
-    visit bunkers_path
+    i_need_javascript do
+      location = create(:location_with_bunker)
+      visit bunkers_path
 
-    click_link "Add to Cart"
-    within ".main-nav" do
-      click_on "My Cart"
+      click_on "Book Now!!"
+
+
+      find("#myStartDatePicker").click
+      click_on "Select"
+
+      click_on "Pick End Date"
+      click_on "18"
+      click_on "Select"
+
+      click_on "Add to Cart"
+
+      within ".main-nav" do
+        click_on "My Cart"
+      end
+      click_on "Checkout"
+
+      assert_equal login_path, current_path
     end
-    click_on "Checkout"
-
-    assert_equal login_path, current_path
   end
 
   test "after login user is redirected to cart they previously started" do

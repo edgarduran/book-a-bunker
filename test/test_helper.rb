@@ -15,8 +15,23 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  def i_need_javascript
+    initial_driver = Capybara.current_driver
+    Capybara.current_driver = Capybara.javascript_driver
+    yield
+  ensure
+    Capybara.current_driver = initial_driver
+  end
+
   def teardown
     reset_session!
+  end
+end
+
+class ActiveRecord::Base
+  @@shared_connection = retrieve_connection
+  def self.connection
+    @@shared_connection || retrieve_connection
   end
 end
 
