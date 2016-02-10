@@ -44,6 +44,7 @@ end
 
 def create_store_admin
   store = Store.create(name: "Cool Store", description: "Shacks")
+  bunker = create(:bunker)
   store_admin = User.create(
     first_name: "Store",
     last_name: "Admin",
@@ -52,7 +53,11 @@ def create_store_admin
     password_confirmation: "password"
   )
   role = Role.create(name: "store_admin")
+  location = Location.create(city: "test_city")
+  location.bunkers << bunker
+  store.bunkers << bunker
   store_admin.roles << role
+  location.stores << store
   store.users << store_admin
   store_admin
 end
@@ -72,7 +77,8 @@ end
   def login_store_admin_with_store
     admin = create_store_admin
     login(admin)
-    visit store_dashboard_path(admin.store)
+    visit store_dashboard_path(admin.store.slug)
+
     click_on "Add New Bunker"
     fill_in "Bunker Name", with: "Artist Loft Bunker"
     fill_in "Description", with: "So trendy and awesome"

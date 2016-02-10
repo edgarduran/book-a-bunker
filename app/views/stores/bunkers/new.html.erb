@@ -19,6 +19,9 @@
   <%= f.label :bathrooms, class: "form-text" %>
   <%= f.text_field :bathrooms %>
 
+  <%= f.label :location %>
+  <%= f.select("location", @locations) %>
+
   <%= f.submit "Create New Bunker", class:"submit-btn" %>
 
   <% end %>

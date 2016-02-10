@@ -11,6 +11,7 @@ class Stores::BunkersController < Stores::StoresController
   def new
     @bunker = Bunker.new
     @store = current_store
+    @locations = Location.pluck(:city)
   end
 
   def create

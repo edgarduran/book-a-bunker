@@ -8,7 +8,7 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     click_on "Add New Bunker"
 
     assert_equal new_store_bunker_path(admin.store.slug), current_path
-
+    save_and_open_page
     fill_in "Bunker Name", with: "Artist Loft Bunker"
     fill_in "Description", with: "So trendy and awesome"
     fill_in "Price", with: 100
@@ -26,8 +26,10 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can update an existing bunker" do
-    login_store_admin_with_store
+    admin = create_store_admin
+    login(admin)
 
+    visit store_bunkers_path(admin.store.slug)
     click_on "Edit Bunker"
 
     fill_in "Bunker Name", with: "Skyscraper Bunker"
@@ -44,7 +46,9 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can delete a bunker" do
-    login_store_admin_with_store
+    # login_store_admin_with_store
+    admin = create_store_admin
+    login(admin)
     assert page.has_content? "Artist Loft Bunker"
     assert page.has_content? "So trendy and awesome"
 
