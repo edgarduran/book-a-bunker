@@ -7,8 +7,8 @@
   <ul class="user-info">
     <li class="user-name"> <%= current_user.first_name %> <%= current_user.last_name %></li><br>
     <li class="user-email"><%= current_user.email %></li><br><br><br>
-    <li><%= link_to "Edit Personal Profile", edit_user_path(current_user), id:"dashboard-btns" %></li><br>
-    <li><%= link_to "Edit Store Info", edit_store_path(current_user), id:"dashboard-btns" %></li><br>
+    <li><%= link_to "Edit Personal Profile", edit_user_path(current_user.store), id:"dashboard-btns" %></li><br>
+    <li><%= link_to "Edit Store Info", edit_store_path(current_user.store), id:"dashboard-btns" %></li><br>
     <li><%= link_to "Add New Bunker", {controller: 'stores/bunkers', action: 'new', store_slug: @store.slug}, id:"dashboard-btns" %></li>
   </ul>
 </div>
@@ -22,7 +22,7 @@
   <div class="container">
     <div class="filter">
 	    <h4>Filter By Status:</h4>
-	    <%= select :order, :filter_status, @statuses, {include_blank: true} %>
+	    <%= select :order, :filter_status, @statuses, {include_blank: true}, class: "display site-font" %>
     </div>
     <table id="user-orders" class="site-font order-table bordered highlight">
       <thead>
@@ -37,7 +37,7 @@
       </thead>
       <tbody>
         <% @store.orders.each do |order| %>
-        <tr id="<%= order.id.to_s %>"  data-status="<%= order.status %>">
+        <tr id="<%= order.id.to_s %>" class="order" data-status="<%= order.status %>">
           <td class="order-name center" id="orders-table">
             <%= order.user.first_name %> <%= order.user.last_name %>
           </td>

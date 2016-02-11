@@ -14,6 +14,7 @@
         <th class="center" id="admins-table" data-field="user_last_name">Last Name</th>
         <th class="center" id="admins-table" data-field="user_email">Email</th>
         <th class="center" id="admins-table" data-field="user_store">Store</th>
+        <th class="center" id="admins-table" data-field="deactivate">Deactivate Store</th>
       </tr>
     </thead>
     <tbody>
@@ -55,7 +56,7 @@
               <%= @store_application.users.first.last_name %>
             </td>
             <td class="center">
-              <%= link_to "Approve", store_path(@store_application), method: :patch %>
+              <%= link_to "Approve", store_path(@store_application, approved: true), method: :patch %>
             </td>
           </tr>
         <% end %>
