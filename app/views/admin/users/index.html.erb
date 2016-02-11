@@ -107,7 +107,8 @@
             <%= @store_application.users.first.last_name %>
           </td>
           <td class="center">
-            <%= link_to "Approve", store_path(@store_application), method: :patch %>
+            <%= link_to "Approve", store_path(:id => @store_application.id, :approved => true), method: :patch %>
+            <%= link_to "Deny", store_path(:id => @store_application.id, :approved => false), method: :patch %>
           </td>
         </tr>
       <% end %>

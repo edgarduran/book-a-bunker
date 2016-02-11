@@ -26,8 +26,14 @@ class StoresController < ApplicationController
   def update
     store = Store.find(params[:id])
     role = Role.find_by(name: "store_admin")
-    store.users.first.roles << role
-    store.update(approved: true)
+    if params[:approved] == "true"
+      store.users.first.roles << role
+      store.update(approved: true)
+      flash[:success] = "Store approved."
+    else
+      store.update(approved: false)
+      flash[:notice] = "Store denied."
+    end
     redirect_to admin_dashboard_path
   end
 
