@@ -7,6 +7,7 @@ class Stores::DashboardController < ApplicationController
 
   def index
     @store = current_user.store
+    @orders = Order.where(store_id: @store.id)
   end
 
   private
