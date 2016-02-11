@@ -3,25 +3,25 @@ require "test_helper"
 class UserCanEditBunkerNightsQuantityInCart < ActionDispatch::IntegrationTest
   test "user removes bunker from cart by subtracting until quantity is 0" do
     skip
-    location = create(:location_with_bunkers)
-    bunkers = location.bunkers
+    location = create(:location_with_bunker)
+    bunker = location.bunkers.first
     store = create(:store)
-    store.bunkers << bunkers
-
-    visit bunkers_path
-
-    first(:link, "Add to Cart").click
+    store.bunkers << bunker
+    user = create(:user)
+    user.roles.create(name: "registered_user")
+    cart = Cart.new("#{bunker.id}" => 1)
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+    ApplicationController.any_instance.stubs(:cart).returns(cart)
 
     visit cart_path
-
-    within ".cart-bunker-info" do
-      assert page.has_content? "#{bunker.title}"
-    end
+    # within ".cart-bunker-info" do
+      assert page.has_content? bunker.title
+    # end
     within ".order-bunker-quantity" do
       assert page.has_content? "1"
     end
 
-    click_link_or_button "remove_circle_outline"
+    click_link_or_button "#remove_bunker_button"
     refute page.has_content? "#{bunker.title}"
   end
 

@@ -6,43 +6,32 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
     user = create(:user)
     role = Role.create(name: "registered_user")
     user.roles << role
-    create(:location_with_bunker)
+    location = create(:location_with_bunker)
+    bunker = location.bunkers.first
+    # cart = Cart.new("#{bunker.id}" => 2)
+    # ApplicationController.any_instance.stubs(:current_user).returns(user)
+    # ApplicationController.any_instance.stubs(:cart).returns(cart)
 
-    visit bunkers_path
-    click_on "Add to Cart"
-    click_on "Add to Cart"
     visit cart_path
-    click_on "Checkout"
-
-    assert_equal login_path, current_path
-
-    login(user)
 
     assert_equal cart_path, current_path
 
+    assert page.has_content? bunker.title
     click_on "Checkout"
 
-    order = user.orders.last
-
     assert_equal new_charge_path, current_path
-    assert page.has_content? "Amount Owed"
-    assert page.has_content? order.formatted_date
-    assert page.has_link? "View Order"
-    assert page.has_content? order.total
-    assert_equal order.status, "ordered"
   end
 
   test "unregistered user redirects back to cart after creating an account" do
-    skip
     location = create(:location_with_bunker)
     bunkers = location.bunkers
     store = create(:store)
     store.bunkers << bunkers
+    bunker = bunkers.first
     Role.create(name: "registered_user")
+    cart = Cart.new("#{bunker.id}" => 2)
+    ApplicationController.any_instance.stubs(:cart).returns(cart)
 
-    visit bunkers_path
-    click_on "Add to Cart"
-    click_on "Add to Cart"
     visit cart_path
     click_on "Checkout"
 
