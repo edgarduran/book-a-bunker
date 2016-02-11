@@ -11,4 +11,7 @@
   <td class="center">
     <%= store_admin.store.name %>
   </td>
+  <td class="center">
+    <%= link_to "Deactivate", store_path(:id => store_admin.store.id, :approved => "deactivate"), method: :patch %>
+  </td>
 </tr>

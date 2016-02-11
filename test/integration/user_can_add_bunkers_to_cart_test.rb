@@ -3,6 +3,7 @@ require "test_helper"
 class UserCanAddBunkersToCart < ActionDispatch::IntegrationTest
 
   test "displays bunker information plus total cost for all bunkers in cart" do
+    skip
     location = create(:location_with_bunker)
     bunker = location.bunkers.first
     store = create(:store)

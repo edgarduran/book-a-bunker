@@ -19,7 +19,6 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     click_on "Create New Bunker"
 
     assert_equal store_bunkers_path(admin.store.slug), current_path
-    save_and_open_page
     assert page.has_content? "Artist loft bunker"
     assert page.has_content? "So trendy and awesome"
   end

@@ -19,6 +19,7 @@ FactoryGirl.define do
   factory :store do
     name
     description
+    approved true
 
     factory :store_with_bunkers do
       bunkers { create_list(:bunker, 2) }
