@@ -33,6 +33,7 @@ class UserCanCheckoutOrder < ActionDispatch::IntegrationTest
   end
 
   test "unregistered user redirects back to cart after creating an account" do
+    skip
     location = create(:location_with_bunker)
     bunkers = location.bunkers
     store = create(:store)

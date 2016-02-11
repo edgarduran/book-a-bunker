@@ -3,6 +3,8 @@ require "test_helper"
 class AuthenticatedUserViewsPastOrdersTest < ActionDispatch::IntegrationTest
   test "displays item information plus total cost for all items in cart" do
     user = create(:user_with_orders)
+    role = Role.create(name: "registered_user")
+    user.roles << role
     login(user)
 
     visit "/orders"
