@@ -2,7 +2,7 @@ class Stores::BunkersController < Stores::StoresController
   before_action :find_bunker, only: [:show, :edit, :update]
 
   def index
-    @bunkers = current_store.bunkers
+    @bunkers = current_store.bunkers.paginate(page: params[:page], :per_page => 10)
   end
 
   def show
@@ -11,19 +11,15 @@ class Stores::BunkersController < Stores::StoresController
   def new
     @bunker = Bunker.new
     @store = current_store
-    @locations = Location.pluck(:city)
+    @locations = Location.all
   end
 
   def create
-    @bunker = Bunker.new(bunker_params)
-    if @bunker.save
-      current_store.bunkers << @bunker
-      flash[:notice] = "New Bunker Created!"
-      redirect_to store_bunkers_path(current_store.slug)
-    else
-      flash.now[:error] = @bunker.errors.full_messages.join(", ")
-      render :new
-    end
+    @location = Location.find(params[:bunker][:location_id])
+    @bunker = @location.bunkers.create(bunker_params)
+    current_store.bunkers << @bunker
+    flash[:notice] = "New Bunker Created!"
+    redirect_to store_bunkers_path(current_store.slug)
   end
 
   def edit
