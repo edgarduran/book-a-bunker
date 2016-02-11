@@ -18,6 +18,13 @@ class UserCanBeCreatedTest < ActionDispatch::IntegrationTest
     assert_equal dashboard_path, current_path
     assert page.has_content? "My's Dashboard"
     assert page.has_content? "My Name"
+
+    within ".main-nav" do
+      click_link_or_button "Logout"
+    end
+
+    user = User.last
+    assert user.registered_user?
   end
 
   test "user cannot create account with invalid params" do
