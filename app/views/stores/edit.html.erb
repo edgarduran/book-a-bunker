@@ -1,0 +1,14 @@
+<div class="container center">
+  <h1>Update Store Info</h1>
+</div>
+
+<div class="container" id="user-form">
+  <%= form_for(@store, :url => changes_path(@store.id)) do |f| %>
+  <%= f.label :name, "Store Name", class: "form-text" %>
+  <%= f.text_field :name %>
+  <%= f.label :description, "Store Description", class: "form-text" %>
+  <%= f.text_area :description %>
+
+  <%= f.submit "Apply Changes" %>
+  <% end %>
+</div>

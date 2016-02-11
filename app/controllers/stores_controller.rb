@@ -42,6 +42,21 @@ class StoresController < ApplicationController
     redirect_to admin_dashboard_path
   end
 
+  def edit
+    @store = Store.find(params[:id])
+  end
+
+  def changes
+    store = Store.find(params[:id])
+    if store.update(store_params)
+      flash[:success] = "#{store.name} has been updated"
+      redirect_to store_dashboard_path(store_slug: store.slug)
+    else
+      flash[:error] = "Please fill out with valid information"
+      render :edit
+    end
+  end
+
   private
 
   def store_params
