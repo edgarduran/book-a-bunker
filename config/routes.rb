@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:show, :index], param: :slug
   resources :cart_bunkers, only: [:create, :update]
   resources :stores, only: [:index, :new, :create, :update, :edit]
+  patch 'stores/:id/changes', to: 'stores#changes', as: "changes"
 
   resources :charges, only: [:new]
 
