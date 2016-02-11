@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @store.orders.each do |order| %>
+        <% @orders.each do |order| %>
         <tr id="<%= order.id.to_s %>" class="order" data-status="<%= order.status %>">
           <td class="order-name center" id="orders-table">
             <%= order.user.first_name %> <%= order.user.last_name %>
