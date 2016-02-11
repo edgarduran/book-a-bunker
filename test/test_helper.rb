@@ -41,7 +41,17 @@ def login(user)
   click_button "Login"
 end
 
-
+def create_platform_admin
+  platform_admin = User.create(
+    first_name: "Platform",
+    last_name: "Admin",
+    email: "platformeadmin@email.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+  role = Role.create(name: "platform_admin")
+  platform_admin.roles << role
+end
 def create_store_admin
   store = Store.create(name: "Cool Store", description: "Shacks")
   bunker = create(:bunker)

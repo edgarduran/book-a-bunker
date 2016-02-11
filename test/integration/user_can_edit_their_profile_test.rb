@@ -5,6 +5,8 @@ class UserCanEditTheirProfileTest < ActionDispatch::IntegrationTest
     user = create(:user, first_name: "Penney",
                          last_name: "Gadget",
                          email: "email@zombieland.com")
+    role = Role.create(name: "registered_user")
+    user.roles << role
     login(user)
 
     visit dashboard_path
