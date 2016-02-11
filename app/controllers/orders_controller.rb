@@ -24,15 +24,29 @@ class OrdersController < ApplicationController
         session[:cart] = nil
         flash[:notice] = "Order successfully placed! Your bunker is secured."
         redirect_to dashboard_path
-        # new_order.bunkers.each do |bunker|
-        #   bunker.store.orders << new_order unless bunker.store.orders.find_by(id: new_order.id)
-        # end
+        new_order.bunkers.each do |bunker|
+          bunker.store.orders << new_order unless bunker.store.orders.find_by(id: new_order.id)
+        end
       end
     else
       session[:referrer] = URI(request.referrer).path
       redirect_to login_path
     end
     stripe_rescue
+  end
+
+  def update
+    binding.pry
+    @order = Order.find(params[:id])
+    @order.update(status: params[:status])
+    flash[:success] = "Order Updated."
+    redirect_to store_dashboard_path(@order.store)
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:status, :id)
   end
 
   def stripe_rescue

@@ -18,7 +18,7 @@ class StoreAdminViewsDashboardTest < ActionDispatch::IntegrationTest
     login(admin)
 
     assert page.has_content? "Orders"
-    assert page.has_content? "No orders to show at this time"
+    assert page.has_content? "No orders have been placed yet"
   end
 
   test "admin can see order dashboard with orders" do
