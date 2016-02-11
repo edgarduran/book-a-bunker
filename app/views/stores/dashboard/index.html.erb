@@ -54,7 +54,7 @@
             <div class="btn black" id="action-btn">
               <%= link_to "Cancel", order_path(order, status: "cancelled"), method: :patch if order.status == "paid" || order.status == "ordered" %>
             </div>
-            <div class="btn black">
+            <div class="btn black white-text">
               <%= link_to "Mark as paid", order_path(order, status: "paid"), method: :patch if order.status == "ordered" %>
               <%= link_to "Mark as completed", order_path(order, status: "completed"), method: :patch if order.status == "paid" %>
             </div>
