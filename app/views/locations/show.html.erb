@@ -1,1 +1,2 @@
-<%= render partial: "partials/bunkers_results_page", locals: { target: @location.bunkers } %>
+<h1 class="center-align index-h1"> <%= @location.city %> </h1>
+<%= render partial: "partials/bunkers_results_page", locals: { target: @location.bunkers.paginate(page: params[:page], :per_page => 10) } %>
