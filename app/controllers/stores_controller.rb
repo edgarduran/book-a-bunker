@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   def index
-    @stores = Store.all
+    @stores = Store.where(approved: true)
   end
 
   def show
@@ -26,11 +26,16 @@ class StoresController < ApplicationController
   def update
     store = Store.find(params[:id])
     role = Role.find_by(name: "store_admin")
-    if params[:approved] == "true"
+    removed_role = Role.find_by(name: "registered_user")
+    case params[:approved]
+    when "deactivate"
+      store.update(approved: false)
+      flash[:notice] = "Store deactivated."
+    when "true"
       store.users.first.roles << role
       store.update(approved: true)
       flash[:success] = "Store approved."
-    else
+    when "false"
       store.update(approved: false)
       flash[:notice] = "Store denied."
     end
