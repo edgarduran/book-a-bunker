@@ -22,6 +22,7 @@ gem 'pickadate-rails'
 gem 'selenium-webdriver'
 gem 'sendgrid-ruby'
 gem 'figaro'
+gem 'mocha'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
