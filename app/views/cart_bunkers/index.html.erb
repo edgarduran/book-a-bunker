@@ -58,7 +58,8 @@
     </tr>
   </tbody>
 </table>
-
-<div class="checkout">
-  <%= link_to "Checkout", @path, id:"checkout-btn" %>
-</div>
+<% if @cart.cart_subtotal > 0 %>
+  <div class="checkout">
+    <%= link_to "Checkout", @path, id:"checkout-btn" %>
+  </div>
+<% end %>
