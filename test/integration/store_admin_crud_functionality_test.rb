@@ -8,7 +8,6 @@ class StoreAdminCrudFunctionalityTest < ActionDispatch::IntegrationTest
     click_on "Add New Bunker"
 
     assert_equal new_store_bunker_path(admin.store.slug), current_path
-    save_and_open_page
     fill_in "Bunker Name", with: "Artist Loft Bunker"
     fill_in "Description", with: "So trendy and awesome"
     fill_in "Price", with: 100

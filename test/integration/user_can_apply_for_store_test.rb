@@ -16,7 +16,7 @@ class UserCanApplyForStoreTest < ActionDispatch::IntegrationTest
     assert_equal dashboard_path, current_path
 
     click_link "Store Application"
-
+    
     assert_equal new_store_path, current_path
     assert page.has_content?("Store Application")
 

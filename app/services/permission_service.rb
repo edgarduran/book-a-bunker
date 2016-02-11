@@ -54,7 +54,7 @@ class PermissionService
     return true if controller == "orders"         && action.in?(%w(index create show))
     return true if controller == "bunkers"        && action.in?(%w(index show))
     return true if controller == "locations"      && action.in?(%w(index show))
-    return true if controller == "stores"         && action.in?(%w(index show))
+    return true if controller == "stores"         && action.in?(%w(index show new create))
     return true if controller == "charges"        && action == "new"
     return true if controller == "stores/bunkers" && action.in?(%w(index show))
   end

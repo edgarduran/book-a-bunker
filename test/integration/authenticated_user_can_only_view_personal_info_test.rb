@@ -2,7 +2,6 @@ require "test_helper"
 
 class UserCanOnlyViewPersonalInfoTest < ActionDispatch::IntegrationTest
   test "authenticated user cannot access another user's info" do
-    skip
     user_1 = create(:user_with_order)
     order = user_1.orders.last
     user_2 = create(:user)
@@ -15,23 +14,13 @@ class UserCanOnlyViewPersonalInfoTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated user cannot access admin dashboard" do
-    skip
     user = create(:user_with_order)
-    create_admin
+    create_platform_admin
 
     login(user)
     visit admin_dashboard_path
-
-    assert page.has_content? "404"
-    assert page.has_content? "The page you were looking for doesn't exist."
+    
+    assert_equal "/", current_path
   end
 
-  test "authenticated user cannot make self an admin" do
-    skip
-    user = create(:user)
-    login(user)
-
-    visit admin_dashboard_path
-    refute page.has_content? "Admin"
-  end
 end
