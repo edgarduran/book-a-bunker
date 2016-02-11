@@ -10,7 +10,7 @@ class StoreAdminViewsDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content? admin.first_name
     assert page.has_content? admin.last_name
     assert page.has_link? "Edit Store Info"
-    assert page.has_link? "View Store's Orders"
+    assert page.has_content? "Orders"
   end
 
   test "admin can see order dashboard no orders" do
