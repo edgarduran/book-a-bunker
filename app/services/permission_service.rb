@@ -30,6 +30,7 @@ class PermissionService
     return true if controller == "stores"         && action.in?(%w(index update show))
     return true if controller == "admin/users"    && action == "index"
     return true if controller == "stores/bunkers" && action.in?(%w(index show))
+    return true if controller == "orders"         && action == "show"
   end
 
   def store_admin_permissions
