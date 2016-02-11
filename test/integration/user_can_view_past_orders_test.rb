@@ -4,9 +4,9 @@ class UserCanViewPastOrdersTest < ActionDispatch::IntegrationTest
   test "all order details are displayed" do
     skip
     user = create(:user)
+    login(user)
     bunker_1 = Bunker.create(title: "Shack", price: 10, description: "Nice and airy")
     bunker_2 = Bunker.create(title: "Artist Loft", price: 500, description: "So trendy")
-    login(user)
 
     visit bunker_path(bunker_1)
     click_on "Add to Cart"

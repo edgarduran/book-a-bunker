@@ -34,43 +34,45 @@ class ActiveRecord::Base
   end
 end
 
-def login(user)
-  visit login_path
-  fill_in "Email", with: user.email
-  fill_in "Password", with: user.password
-  click_button "Login"
-end
+  def login(user)
+    visit login_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Login"
+  end
 
-def create_platform_admin
-  platform_admin = User.create(
-    first_name: "Platform",
-    last_name: "Admin",
-    email: "platformeadmin@email.com",
-    password: "password",
-    password_confirmation: "password"
-  )
-  role = Role.create(name: "platform_admin")
-  platform_admin.roles << role
-end
-def create_store_admin
-  store = Store.create(name: "Cool Store", description: "Shacks")
-  bunker = create(:bunker)
-  store_admin = User.create(
-    first_name: "Store",
-    last_name: "Admin",
-    email: "storeadmin@email.com",
-    password: "password",
-    password_confirmation: "password"
-  )
-  role = Role.create(name: "store_admin")
-  location = Location.create(city: "test_city")
-  location.bunkers << bunker
-  store.bunkers << bunker
-  store_admin.roles << role
-  location.stores << store
-  store.users << store_admin
-  store_admin
-end
+  def create_platform_admin
+    platform_admin = User.create(
+      first_name: "Platform",
+      last_name: "Admin",
+      email: "platformeadmin@email.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    role = Role.create(name: "platform_admin")
+    platform_admin.roles << role
+    platform_admin
+  end
+
+  def create_store_admin
+    store = Store.create(name: "Cool Store", description: "Shacks")
+    bunker = create(:bunker)
+    store_admin = User.create(
+      first_name: "Store",
+      last_name: "Admin",
+      email: "storeadmin@email.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+    role = Role.create(name: "store_admin")
+    location = Location.create(city: "test_city")
+    location.bunkers << bunker
+    store.bunkers << bunker
+    store_admin.roles << role
+    location.stores << store
+    store.users << store_admin
+    store_admin
+  end
 
   def login_store_admin
     admin = create_store_admin

@@ -24,6 +24,10 @@ FactoryGirl.define do
     factory :store_with_bunkers do
       bunkers { create_list(:bunker, 2) }
     end
+
+    factory :store_with_orders do
+      bunkers { create_list(:bunker, 2) }
+    end
   end
 
   sequence :name do |n|
@@ -77,6 +81,5 @@ FactoryGirl.define do
   factory :order do
     bunkers { create_list(:bunker, 2) }
   end
-
 
 end

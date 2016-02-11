@@ -1,10 +1,10 @@
-require 'test_helper'
+require "test_helper"
 
 class StoreAdminCanUpdateStoreInfoTest < ActionDispatch::IntegrationTest
 
   test "store_admin_can_edit_stores_info" do
     admin = create_store_admin
-    location = Location.create(city: "Denver")
+    Location.create(city: "Denver")
     login(admin)
 
     visit store_dashboard_path(admin.store)
