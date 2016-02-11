@@ -200,6 +200,10 @@ a.brand-logo {
     background-color: rgba(219, 211, 202, .6);
 }
 
+.order-total {
+  margin-right: -25px;
+}
+
 .checkout {
   margin-left: 72%;
   margin-top: 20px;
@@ -377,6 +381,10 @@ a.brand-logo {
   color: black;
   border-style: solid;
   font-size: 1.3em;
+}
+
+#orders-table, #app-table, #admins-table {
+  border: solid
 }
 
 /*Individual Past Order*/

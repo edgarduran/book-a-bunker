@@ -1,12 +1,12 @@
 <div class="container center">
   <h1>Order Details for <%= @order.formatted_date %>: </h1>
-</div>
+</div><br>
 <div class="order-container container center">
   <table class="bordered highlight site-font">
     <thead>
       <tr class="order-item-table table-headers">
         <th class="item-header" data-field="image">Item</th>
-        <th class="center" data-field="dates">Dates</th>
+        <th class="center" data-field="dates">Nights</th>
         <th class="center" data-field="price">Price</th>
         <th class="center" data-field="status">Status</th>
         <th class="center" data-field="sub_total">Subtotal</th>
@@ -16,6 +16,8 @@
       <%= render partial: 'partials/orders_table_item', collection: @order.bunkers, as: :bunker %>
     </tbody>
   </table>
+</div><br>
+<div class="container">
   <div class="order-total">
     Total: <%= number_to_currency(@order.total) %>
   </div>

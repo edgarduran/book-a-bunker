@@ -57,6 +57,22 @@ class Seed
     puts "Created Store Admin Andrew!"
     store.users << andrew
     andrew.roles << Role.find_by(name: "store_admin")
+
+    50.times do |i|
+      bunker = Bunker.create(
+        title: "Apple Bunker ##{i}",
+        description: Faker::Lorem.paragraph,
+        price: Faker::Commerce.price,
+        image: "andrews-apple-bunker.jpg",
+        bedrooms: Faker::Number.between(1, 5),
+        bathrooms: Faker::Number.between(0, 3)
+      )
+      puts "Created Bunker #{i}: #{bunker.title}"
+      store = Store.find_by(name: "Andrew's Apples")
+      location = Location.find_by(city: "Denver")
+      store.bunkers << bunker
+      location.bunkers << bunker
+    end
   end
 
   def generate_registered_users
@@ -72,6 +88,7 @@ class Seed
         bunker = store.bunkers.find(x+1)
         current = user.orders.create
         current.bunkers << bunker
+        store.orders << current
         puts "Order ##{x} for user."
       end
     end
@@ -80,7 +97,7 @@ class Seed
   def generate_registered_user_josh
     josh = User.create(first_name: "Josh",
                        last_name: "Mejia",
-                       email: "josh@turig.io",
+                       email: "josh@turing.io",
                        password: "password")
     puts "Created Registered User Josh!"
     josh.roles << Role.find_by(name: "registered_user")
@@ -89,14 +106,15 @@ class Seed
       bunker = store.bunkers.find(x+1)
       current = josh.orders.create
       current.bunkers << bunker
+      store.orders << current
       puts "Order ##{x} for user."
     end
   end
 
   def generate_platform_admin_jorge
-    jorge = User.create(first_name: "Josh",
+    jorge = User.create(first_name: "Jorge",
                        last_name: "Tellez",
-                       email: "jorge@turig.io",
+                       email: "jorge@turing.io",
                        password: "password")
     puts "Created Platform Admin Jorge!"
     jorge.roles << Role.find_by(name: "platform_admin")

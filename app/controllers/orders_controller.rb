@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
     if current_user
-      @orders = current_user.orders.reverse
+      @orders = current_user.orders
     else
       unauthenticated_user_error
     end
@@ -19,27 +19,23 @@ class OrdersController < ApplicationController
         end
       end
       if new_order.save
-        @amount = (@cart.bunker_totals.sum) * 100
-        customer = Stripe::Customer.create(
-          :email => params[:stripeEmail],
-          :source => params[:stripeToken]
-        )
-        Stripe::Charge.create(
-          :customer => customer.id,
-          :amount => @amount,
-          :description => 'Rails Stripe customer',
-          :currency => 'usd'
-        )
+        StripeService.new
         mail_service.send_email(current_user.email)
         session[:cart] = nil
         flash[:notice] = "Order successfully placed! Your bunker is secured."
         redirect_to dashboard_path
+        # new_order.bunkers.each do |bunker|
+        #   bunker.store.orders << new_order unless bunker.store.orders.find_by(id: new_order.id)
+        # end
       end
-
     else
       session[:referrer] = URI(request.referrer).path
       redirect_to login_path
     end
+    stripe_rescue
+  end
+
+  def stripe_rescue
     rescue Stripe::CardError => e
       flash[:error] = e.message
       redirect_to cart_path

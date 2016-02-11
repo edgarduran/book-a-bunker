@@ -14,11 +14,12 @@
 </div>
 <br><br><br>
 <% if @store.orders == [] %>
-  <h3 class="container center user-orders-header site-font">Orders</h3>>
-  <h4>No orders to show at this time</h4>
+<div>
+  <h3 class="container center user-orders-header site-font">Store Orders</h3>>
+  <h4 class="container center">No orders have been placed yet</h4>
+</div><br><br>
 <% else %>
-  <div class="col s9">
-    <h4 class="user-orders-header center site-font">Orders</h4>
+  <div class="container">
     <div class="filter">
 	    <h4>Filter By Status:</h4>
 	    <%= select :order, :filter_status, @statuses, {include_blank: true} %>
@@ -36,25 +37,29 @@
       </thead>
       <tbody>
         <% @store.orders.each do |order| %>
-        <tr class="order-table" id="<%= order.id.to_s %>"  data-status="<%= order.status %>">
-          <td class="order-name center">
+        <tr id="<%= order.id.to_s %>"  data-status="<%= order.status %>">
+          <td class="order-name center" id="orders-table">
             <%= order.user.first_name %> <%= order.user.last_name %>
           </td>
-          <td class="center">
+          <td class="center" id="orders-table">
             <%= order.formatted_date %>
           </td>
-          <td class="center">
-            <%= order.total %>
+          <td class="center" id="orders-table">
+            $<%= order.total %>
           </td>
-          <td class="center statuss">
+          <td class="center statuss" id="orders-table">
             <%= order.status %>
           </td>
-          <td>
-            <%= link_to "Cancel", order_path(order, status: "cancelled"), method: :patch if order.status == "paid" || order.status == "ordered" %>
-            <%= link_to "Mark as paid", order_path(order, status: "paid"), method: :patch if order.status == "ordered" %>
-            <%= link_to "Mark as completed", order_path(order, status: "completed"), method: :patch if order.status == "paid" %>
+          <td class="center" id="orders-table">
+            <div class="btn black" id="action-btn">
+              <%= link_to "Cancel", order_path(order, status: "cancelled"), method: :patch if order.status == "paid" || order.status == "ordered" %>
+            </div>
+            <div class="btn black">
+              <%= link_to "Mark as paid", order_path(order, status: "paid"), method: :patch if order.status == "ordered" %>
+              <%= link_to "Mark as completed", order_path(order, status: "completed"), method: :patch if order.status == "paid" %>
+            </div>
           </td>
-          <td class="button center">
+          <td class="button center" id="orders-table">
             <%= link_to "View Order", order_path(order), class: "btn black" %>
           </td>
         </tr>
@@ -63,3 +68,4 @@
     </table>
   </div>
 <% end %>
+<br><br>

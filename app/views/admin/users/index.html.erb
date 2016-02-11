@@ -3,10 +3,69 @@
 <% else %>
 <h1 class="admin-header center">Admin Dashboard</h1>
 <% end %>
+<br><br>
 
+<div class="container">
+  <h4 class="user-orders-header center site-font">Store Admins</h4>
+  <table class="site-font order-table bordered highlight" id="admins-table">
+    <thead>
+      <tr class="table-headers">
+        <th class="center" id="admins-table" data-field="user_first_name">First Name</th>
+        <th class="center" id="admins-table" data-field="user_last_name">Last Name</th>
+        <th class="center" id="admins-table" data-field="user_email">Email</th>
+        <th class="center" id="admins-table" data-field="user_store">Store</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "partials/store_admins_table_item", collection: @store_admins, as: :store_admin %>
+    </tbody>
+  </table>
+
+</div><br><br><br><br><!-- End of table -->
 <div class="row">
-  <div class="center-align col s3 order-status-side-bar">
-    <h4>Order Status</h4>
+  <div class="col s12">
+    <h4 class="user-orders-header center site-font">Store Applications</h4>
+    <table class="site-font order-table bordered highlight" id="app-table">
+      <thead>
+        <tr class="table-headers">
+          <th class="center" id="app-table" data-field="store_name">Store Name</th>
+          <th class="center" id="app-table" data-field="store_description">Store Description</th>
+          <th class="center" id="app-table" data-field="store_status">Status</th>
+          <th class="center" id="app-table" data-field="store_user_first_name">First Name</th>
+          <th class="center" id="app-table" data-field="store_user_last_name">Last Name</th>
+          <th class="center" id="app-table" data-field="store_action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @store_application %>
+          <tr class="duffel-table">
+            <td class="center">
+              <%= @store_application.name %>
+            </td>
+            <td class="center">
+              <%= @store_application.description %>
+            </td>
+            <td class="center">
+              <%= @store_application.approved? %>
+            </td>
+            <td class="center">
+              <%= @store_application.users.first.first_name %>
+            </td>
+            <td class="center">
+              <%= @store_application.users.first.last_name %>
+            </td>
+            <td class="center">
+              <%= link_to "Approve", store_path(@store_application), method: :patch %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div><br><br><br><br> <!-- End of row -->
+<div class="row">
+  <div class="center-align col s3 order-status-side-bar"><br><br><br><br>
+    <h4>Filter by Order Status</h4>
     <div id="all-orders">
       <%= link_to "All Orders", admin_dashboard_path, id:"all-orders-filter", class:"btn black location-link first-link" %>
     </div>
@@ -23,94 +82,39 @@
       <%= link_to "Completed", admin_dashboard_path(filter: "completed"), id:"completed-filter", class:"btn black location-link" %>
     </div>
   </div>
-  <div class="col s9">
-    <h4 class="user-orders-header center site-font">Orders</h4>
-    <table id="user-orders" class="site-font order-table bordered highlight">
+  <div class="col s8">
+    <h4 class="user-orders-header center site-font">Site-Wide Orders</h4>
+    <table id="orders-table" class="site-font order-table bordered highlight">
       <thead>
         <tr class="order-table table-headers">
-          <th class="center" data-field="first_name">Name</th>
-          <th class="center" data-field="date">Date</th>
-          <th class="center" data-field="total">Total</th>
-          <th class="center" data-field="status">Status</th>
-          <th data-field="button"></th>
+          <th class="center" id="orders-table" data-field="first_name">Name</th>
+          <th class="center" id="orders-table" data-field="date">Date</th>
+          <th class="center" id="orders-table" data-field="total">Total</th>
+          <th class="center" id="orders-table" data-field="status">Status</th>
+          <th id="orders-table" data-field="button"></th>
         </tr>
       </thead>
       <tbody>
         <% @orders.each do |order| %>
         <tr class="order-table" data-status="<%= order.status %>">
-          <td class="order-name center">
+          <td class="order-name center" id="orders-table">
             <%= order.user.first_name %> <%= order.user.last_name %>
           </td>
-          <td class="center">
+          <td class="center" id="orders-table">
             <%= order.formatted_date %>
           </td>
-          <td class="center">
-            <%= order.total %>
+          <td class="center" id="orders-table">
+            $<%= order.total %>
           </td>
-          <td class="center statuss">
+          <td class="center statuss" id="orders-table">
             <%= order.status %>
           </td>
-          <td class="button center">
+          <td class="button center" id="orders-table">
             <%= link_to "View Order", order_path(order), class: "btn black" %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <div class="col s9">
-      <h4 class="user-orders-header center site-font">Store Admins</h4>
-      <table>
-        <thead>
-          <tr class="table-headers">
-            <th class="center" data-field="user_first_name">First Name</th>
-            <th class="center" data-field="user_last_name">Last Name</th>
-            <th class="center" data-field="user_email">Email</th>
-            <th class="center" data-field="user_store">Store</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render partial: "partials/store_admins_table_item", collection: @store_admins, as: :store_admin %>
-        </tbody>
-      </table>
-    </div>
   </div>
 </div>
-<div class="col s9">
-  <h4 class="user-orders-header center site-font">Store Applications</h4>
-  <table class="site-font center bordered highlight">
-    <thead>
-      <tr class="table-headers">
-        <th class="center" data-field="store_name">Store Name</th>
-        <th class="center" data-field="store_description">Store Description</th>
-        <th class="center" data-field="store_status">Status</th>
-        <th class="center" data-field="store_user_first_name">User's First Name</th>
-        <th class="center" data-field="store_user_last_name">User's Last Name</th>
-        <th class="center" data-field="store_action">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @store_application %>
-        <tr class="duffel-table">
-          <td class="center">
-            <%= @store_application.name %>
-          </td>
-          <td class="center">
-            <%= @store_application.description %>
-          </td>
-          <td class="center">
-            <%= @store_application.approved? %>
-          </td>
-          <td class="center">
-            <%= @store_application.users.first.first_name %>
-          </td>
-          <td class="center">
-            <%= @store_application.users.first.last_name %>
-          </td>
-          <td class="center">
-            <%= link_to "Approve", store_path(@store_application), method: :patch %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div> <!-- End of row -->
