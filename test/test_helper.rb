@@ -98,3 +98,5 @@ end
     click_on "Create New Bunker"
   end
 end
+
+require 'mocha/mini_test'

@@ -38,7 +38,7 @@
 
         <td class="center bunker-subtotal"><%= number_to_currency(@cart.bunker_subtotal(bunker.id)) %></td>
         <td>
-          <%= link_to cart_bunker_path(bunker.id, function: "remove"), method: :patch do %>
+          <%= link_to cart_bunker_path(bunker.id, function: "remove"), method: :patch, id: "remove_bunker_button" do %>
             <i class="material-icons md-18 remove-button">clear</i>
           <% end %>
         </td>
