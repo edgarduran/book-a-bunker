@@ -1,4 +1,4 @@
-Project Outline: https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.md
+[Project Outline](https://github.com/turingschool/lesson_plans/blob/master/ruby_03-professional_rails_applications/the_pivot.md)
 
 # Book-A-Bunker
 ## Built with Ruby on Rails
@@ -6,17 +6,20 @@ Project Outline: https://github.com/turingschool/lesson_plans/blob/master/ruby_0
 ### Authors
 [Greg Armstrong](https://github.com/GregoryArmstrong), [Edgar Duran](https://github.com/edgarduran), [Penney Garrett](https://github.com/PenneyGadget)
 
+![Denver Bunker](/app/assets/images/bunker-screenshot.png)
+
+
 This project was created as a part of the curriculum for the [Turing School of Software & Design](http://turing.io) to complete the "Pivot" project.
 
-The original version of this project, the legacy codebase it began with, can be found at: [https://github.com/brantwellman/Turing-zombie-survival-store](https://github.com/brantwellman/Turing-zombie-survival-store)
+The original version of this project, the legacy codebase it began with, can be found [here](https://github.com/brantwellman/Turing-zombie-survival-store).
 
 ### Overview
 
-This application is a parody of Air Bnb where a user can book a bunker and have a place to sleep in a post-apocalypse world. The user can choose a bunker by location or store, choose the number of nights they desire, and pay for their booking via Stripe payment.
+This application is a parody of Air BnB where a user can book a bunker and have a place to sleep in a post-apocalypse world. The user can choose a bunker by location or store, choose the number of nights they desire, and pay for their booking via Stripe payment.
 
 ### Live Version
 
-Book-A-Bunker is hosted live on Heroku at: [https://book-a-bunker.herokuapp.com](https://book-a-bunker.herokuapp.com)
+Book-A-Bunker is hosted live on Heroku [here](https://book-a-bunker.herokuapp.com).
 
 ### Setup
 
@@ -32,8 +35,8 @@ To set up a local copy of this project, perform the following:
 
 ### Test Suite
 
-The test suite tests the application on multiple levels. To run all of the tests, run `rake test` from the terminal in the main directory of the project. 
-The project also utilizes the [simplecov gem](https://github.com/colszowka/simplecov) for quick statistics on code coverage.
+The test suite tests the application on multiple levels. To run all of the tests, run `rake test` from the terminal in the main directory of the project.
+The project also utilizes the [Simplecov gem](https://github.com/colszowka/simplecov) for quick statistics on code coverage.
 
 ### Dependencies
 
